@@ -5,13 +5,13 @@
         </title>
     </head>
     <body>
-        @foreach($datvebi as $jirafi)
+        @foreach($members as $member)
 
         <div class="member-wrapper">
-            <p>{{$jirafi -> name}}</p>
-            <p>{{$jirafi -> type}}</p>
-            <img src="{{$jirafi -> img}}">
-            <p>{{$jirafi -> description}}</p>
+            <p>{{$member -> name}}</p>
+            <p>{{$member -> type}}</p>
+            <img src="{{$member -> img}}">
+            <p>{{$member -> description}}</p>
         </div>
         @endforeach
     </body>

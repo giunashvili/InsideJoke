@@ -16,7 +16,7 @@ use App\Member;
 
 Route::get('/members', function () {
     
-    $jgufis_wevrebi = Member::all();
+    $group_members = Member::all();
 
-    return view('pages.members.index') -> with("datvebi", $jgufis_wevrebi);
+    return view('pages.members.index') -> with("members", $group_members);
 });
