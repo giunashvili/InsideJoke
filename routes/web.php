@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Member;
 use App\SocialLink;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +16,17 @@ use App\SocialLink;
 |
 */
 
+Route::get('/members', function () {
+    
+    $group_members = Member::all();
+
+    return view('pages.members.index') -> with("members", $group_members);
+});
+  
 Route::get('/social-links', function () {
 
     $social_links = SocialLink::all();
 
     return view('pages.social_links.index') -> with('social_links', $social_links);
+
 });
