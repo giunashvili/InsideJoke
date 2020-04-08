@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\SocialLink;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/social-links', function () {
+
+    $social_links = SocialLink::all() -> toArray();
+
+    return view('pages.social_links.index') -> with('social_links', $social_links);
 });
