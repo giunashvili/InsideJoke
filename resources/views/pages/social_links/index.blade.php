@@ -4,14 +4,14 @@
     <head>
     <body>
 
-    @for($i=0; $i < count($social_links); $i++)
-        <a href="{{ $social_links[$i]['link'] }}" target="_blank">     
+    @foreach($social_links as $social_link)
+        <a href="{{ $social_link -> link }}" target="_blank">     
             <div class="social-links">
-                <p>{{ $social_links[$i]['name'] }} </p>
-                <img src="{{ $social_links[$i]['img'] }}" />
+                <p>{{ $social_link -> name }} </p>
+                <img src="{{ $social_link -> img }}" />
             </div>
         </a>
-    @endfor
+    @endforeach
 
     <body>
 </html>
@@ -33,6 +33,6 @@
 
     .social-links img{
         width: 45px;
-        height:: 45px;
+        height: 45px;
     }
 </style>

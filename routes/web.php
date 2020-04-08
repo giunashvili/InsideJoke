@@ -15,7 +15,7 @@ use App\SocialLink;
 
 Route::get('/social-links', function () {
 
-    $social_links = SocialLink::all() -> toArray();
+    $social_links = SocialLink::all();
 
     return view('pages.social_links.index') -> with('social_links', $social_links);
 });
