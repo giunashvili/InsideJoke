@@ -22,7 +22,7 @@ Route::get('/members', function () {
 
     return view('pages.members.index') -> with("members", $group_members);
 });
-  
+# Social Links Route
 Route::get('/social-links', function () {
 
     $social_links = SocialLink::all();
