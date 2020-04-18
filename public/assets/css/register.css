@@ -1,0 +1,93 @@
+@font-face{
+    font-family: BPGArial;
+    src: url(../fonts/bpg_arial_2009.ttf)
+}
+
+@font-face{
+    font-family: BPGNinoMtavruli;
+    src: url(../fonts/nino_mtavruli_new.ttf)
+}
+
+@font-face{
+    font-family: BPGNinoMtavruliBold;
+    src: url(../fonts/bpg_nino_mtavruli_bold.ttf)
+}
+
+.body{
+    background: linear-gradient(180deg, #232A2E 0%, #694830 100%);
+}
+
+.register-box{
+    width: 384px;
+    height: 736px;
+    background: linear-gradient(180deg, #345161 0%, #7B5A5A 100%);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+}
+
+.heading{
+    width: 219px;
+    height: 53px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 38px;
+    margin-bottom: 30px;
+}
+
+.heading-title{
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translateX(-50%) translateY(-50%);
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    font-family: BPGNinoMtavruliBold;
+}
+
+.input{
+    background-color: #C4B6B2;
+    width: 285px;
+    height: 55px;
+    border: 0;
+    border-radius: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 109px;
+    font-size: 14px;
+    font-family: BPGArial;
+    letter-spacing: 1px;
+    color: #501C1C;
+    
+
+}
+
+.input::placeholder{
+    color: #501C1C;
+    letter-spacing: 1px;
+}
+
+.input-btn{
+    width: 227px;
+    height: 55px;
+    background-color: #345161;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    margin-left: 78px;
+    margin-right: 78px;
+    padding-top: 2%;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: BPGNinoMtavruli;
+    letter-spacing: 2px;
+}
+.input-btn:hover{
+    cursor: pointer;
+}
