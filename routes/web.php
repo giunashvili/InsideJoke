@@ -16,13 +16,19 @@ use App\SocialLink;
 |
 */
 
+
+Route::get('register', function () {
+
+    return view('register');
+});
+
 Route::get('/members', function () {
     
     $group_members = Member::all();
 
     return view('pages.members.index') -> with("members", $group_members);
 });
-  
+# Social Links Route
 Route::get('/social-links', function () {
 
     $social_links = SocialLink::all();
