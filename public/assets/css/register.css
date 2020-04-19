@@ -1,20 +1,20 @@
 @font-face{
     font-family: BPGArial;
-    src: url(../fonts/bpg_arial_2009.ttf)
+    src: url('../fonts/bpg_arial_2009.ttf')
 }
 
 @font-face{
     font-family: BPGNinoMtavruli;
-    src: url(../fonts/nino_mtavruli_new.ttf)
+    src: url('../fonts/bpg_nino_mtavruli_normal.ttf')
 }
 
 @font-face{
     font-family: BPGNinoMtavruliBold;
-    src: url(../fonts/bpg_nino_mtavruli_bold.ttf)
+    src: url('../fonts/bpg_nino_mtavruli_bold.ttf')
 }
 
 .body{
-    background: linear-gradient(180deg, #232A2E 0%, #694830 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #534571 0%, #342C46 100%);
 }
 
 .register-box{
@@ -60,7 +60,6 @@
     margin-right: auto;
     margin-bottom: 30px;
     padding-left: 20px;
-    padding-right: 109px;
     font-size: 14px;
     font-family: BPGArial;
     letter-spacing: 1px;
@@ -80,8 +79,9 @@
     background-color: #345161;
     border: 1px solid #FFFFFF;
     border-radius: 3px;
-    margin-left: 78px;
-    margin-right: 78px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 2%;
     color: #FFFFFF;
     font-size: 14px;
