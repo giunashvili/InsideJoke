@@ -1,7 +1,8 @@
 <html>
     <head>
         <title>Register</title>
-        <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/register_login.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
     </head>
     <body class="body">
         <div class="register-box">

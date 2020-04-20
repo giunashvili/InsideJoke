@@ -19,7 +19,12 @@ use App\SocialLink;
 
 Route::get('register', function () {
 
-    return view('register');
+    return view('pages.register.register');
+});
+
+Route::get('login', function () {
+
+    return view('pages.login.login');
 });
 
 Route::get('/members', function () {
