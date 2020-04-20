@@ -1,18 +1,3 @@
-@font-face{
-    font-family: BPGArial;
-    src: url('../fonts/bpg_arial_2009.ttf')
-}
-
-@font-face{
-    font-family: BPGNinoMtavruli;
-    src: url('../fonts/bpg_nino_mtavruli_normal.ttf')
-}
-
-@font-face{
-    font-family: BPGNinoMtavruliBold;
-    src: url('../fonts/bpg_nino_mtavruli_bold.ttf')
-}
-
 .body{
     background: radial-gradient(50% 50% at 50% 50%, #534571 0%, #342C46 100%);
 }
