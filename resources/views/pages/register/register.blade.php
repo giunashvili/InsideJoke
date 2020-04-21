@@ -5,9 +5,9 @@
         <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
     </head>
     <body class="body">
-        <div class="register-box">
+        <div class="register-login-box">
             <div class="heading">
-                <img src=" {{ asset('assets/imgs/rectangle.png') }} " />
+                <img class="rectangle" src=" {{ asset('assets/imgs/rectangle.png') }} " />
                 <span class="heading-title">რეგისტრაცია</span>
         </div>
         <form>

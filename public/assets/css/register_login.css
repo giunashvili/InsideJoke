@@ -2,21 +2,8 @@
     background: radial-gradient(50% 50% at 50% 50%, #534571 0%, #342C46 100%);
 }
 
-.register-box{
-    width: 384px;
-    height: 736px;
-    background: linear-gradient(180deg, #345161 0%, #7B5A5A 100%);
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    border: 1px solid #FFFFFF;
-    border-radius: 2px;
-}
-
-.login-box{
-    width: 384px;
-    height: 438px;
+.register-login-box{
+    width: calc( 384rem / 16 );
     background: linear-gradient(180deg, #345161 0%, #7B5A5A 100%);
     position: fixed;
     left: 50%;
@@ -27,13 +14,13 @@
 }
 
 .heading{
-    width: 219px;
-    height: 53px;
+    width: calc( 219rem / 16 );
+    height: calc( 53rem / 16 );
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 38px;
-    margin-bottom: 30px;
+    margin-top: calc( 38rem / 16 );
+    margin-bottom: calc( 30rem / 16 );
 }
 
 .heading-title{
@@ -42,22 +29,27 @@
     top: 52%;
     transform: translateX(-50%) translateY(-50%);
     letter-spacing: 0.5px;
-    font-size: 18px;
-    font-family: BPGNinoMtavruliBold;
+    font-size: calc( 18rem / 16 );
+    font-family: BPGNinoMtavruliBold;    
 }
+
+.rectangle{
+    width: calc( 219rem / 16 );
+}
+
 
 .input{
     background-color: #C4B6B2;
-    width: 285px;
-    height: 55px;
+    width: calc( 285rem / 16 );
+    height: calc( 55rem / 16 );
     border: 0;
     border-radius: 2px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 30px;
-    padding-left: 20px;
-    font-size: 14px;
+    margin-bottom: calc( 30rem / 16 );
+    padding-left: calc( 20rem / 16 );
+    font-size: calc( 14rem / 16 );
     font-family: BPGArial;
     letter-spacing: 1px;
     color: #501C1C;
@@ -71,20 +63,39 @@
 }
 
 .input-btn{
-    width: 227px;
-    height: 55px;
+    width: calc( 227rem / 16 );
+    height: calc( 55rem / 16 );
     background-color: #345161;
     border: 1px solid #FFFFFF;
     border-radius: 3px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: calc( 38rem / 16 );
     padding-top: 2%;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: calc( 14rem / 16 );
     font-family: BPGNinoMtavruli;
     letter-spacing: 2px;
 }
 .input-btn:hover{
     cursor: pointer;
 }
+
+@media(max-height: 1024px){
+    html{
+        font-size: 14px;
+    }
+}
+@media(max-height: 864px){
+    html{
+        font-size: 12px;
+    }
+}
+@media(max-height: 768px){
+    html{
+        font-size: 11px;
+    }
+}
+
+
