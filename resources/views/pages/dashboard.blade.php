@@ -37,5 +37,9 @@
                 </div>
             </a>       
         </nav>
+        <div class="main-window">
+            <span>დილამშვიდობისა!</span>
+            <img src="{{ asset('assets/imgs/TV.png') }}" />
+        </div>
     </body>
 </html>
