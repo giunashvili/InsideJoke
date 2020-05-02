@@ -1,0 +1,14 @@
+@font-face{
+    font-family: BPGArial;
+    src: url('../fonts/bpg_arial_2009.ttf')
+}
+
+@font-face{
+    font-family: BPGNinoMtavruli;
+    src: url('../fonts/bpg_nino_mtavruli_normal.ttf')
+}
+
+@font-face{
+    font-family: BPGNinoMtavruliBold;
+    src: url('../fonts/bpg_nino_mtavruli_bold.ttf')
+}
