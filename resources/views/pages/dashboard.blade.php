@@ -1,6 +1,7 @@
 <html>
     <header>
         <title>Dashboard</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}" />
         <link rel="stylesheet" href={{ asset('assets/css/fonts.css') }} />
     </header>
