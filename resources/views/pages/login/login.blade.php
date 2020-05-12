@@ -13,9 +13,8 @@
         <form>
             <input type="text" placeholder="მეტსახელი" class="input"/>
             <input type="password" placeholder="პაროლი" class="input"/>
-            <input type="submit" value="შემობრძანდი" class="input-btn"/>
+            <input type="submit" value="შემობრძანდი" class="input-btn" />
         </form>
         </div>
     </body>
-
 </html>
