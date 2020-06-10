@@ -24,11 +24,6 @@ Route::get('login', function () {
     return view('pages.login.login');
 }) -> name ('login');
 
-Route::get('social_links', function () {
-    $social_links = SocialLink::all();
-    return view('pages.social_links.index') -> with('social_links', $social_links);
-}) -> name ('soclinks');
-
 Route::group(['prefix' => 'admin'], function(){
     
     Route::get('members', function () {
@@ -42,7 +37,13 @@ Route::group(['prefix' => 'admin'], function(){
 
     Route::get('social_links', function () {
         $social_links = SocialLink::all();
-        return view('pages.social_links.soclinks_dashboard') -> with('social_links', $social_links);
+        return view('pages.social_links.index') 
+            -> with('social_links', $social_links) 
+            -> with("links_links", $substr)
+        (strlen($social_link['link']) > 41){
+            echo substr($social_link['link'], 0, 40) . "..."
+        }
+        //     echo $social_link['link'];
     })  -> name ('admin/soclinks');
 
 });
