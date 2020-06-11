@@ -36,14 +36,20 @@ Route::group(['prefix' => 'admin'], function(){
     })  -> name ('dashboard');
 
     Route::get('social_links', function () {
-        $social_links = SocialLink::all();
-        return view('pages.social_links.index') 
-            -> with('social_links', $social_links) 
-            -> with("links_links", $substr)
-        (strlen($social_link['link']) > 41){
-            echo substr($social_link['link'], 0, 40) . "..."
+        $social_links = SocialLink::all() -> toArray();
+
+        for( $i=0; $i < count ($social_links); $i++ )
+        {
+            if(strlen($social_links[$i]['link']) > 41){
+                $social_links[$i]['link_shortened'] = substr($social_links[$i]['link'], 0, 40) . "...";
+            }
+            else{
+                $social_links[$i]['link_shortened'] = $social_links[$i]['link'];
+            }
         }
-        //     echo $social_link['link'];
+
+        return view('pages.social_links.index') 
+            -> with('social_links', $social_links);
     })  -> name ('admin/soclinks');
 
 });
