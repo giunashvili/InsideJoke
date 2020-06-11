@@ -20,7 +20,7 @@
                         <img class="icon-edit" src="{{ asset('assets/icons/Edit Photo btn.svg') }}" />
                     </div>
                     <div class="name"> {{ $social_links[$i]['name'] }} </div>
-                    <a href="{{ $social_links[$i]['link_shortened'] }}" target="_blank"> {{ $social_links[$i]['link_shortened'] }} </a>
+                    <a href="{{ $social_links[$i]['link'] }}" target="_blank"> {{ $social_links[$i]['link_shortened'] }} </a>
                     <div class="edit">
                         <div class="edit-outer"></div>
                         <div class="edit-inner"></div>
