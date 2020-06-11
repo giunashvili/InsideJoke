@@ -1,10 +1,10 @@
 <html>
-    <header>
+    <head>
         <title>Dashboard</title>
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}" />
-        <link rel="stylesheet" href={{ asset('assets/css/fonts.css') }} />
-    </header>
+        <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
+    </head>
     <body>
         @include('layouts.navbar')   
         <div class="main-window">
