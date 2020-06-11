@@ -1,38 +1,38 @@
 <html>
     <head>
-        <title>Social Links</title>
-    <head>
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/soclinks.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,100italic,300italic,400italic,500italic,500,700,700italic,900,900italic' rel='stylesheet' type='text/css' />
+    </head>
     <body>
-
-    @foreach($social_links as $social_link)
-        <a href="{{ $social_link -> link }}" target="_blank">     
-            <div class="social-links">
-                <p>{{ $social_link -> name }} </p>
-                <img src="{{ $social_link -> img }}" />
+        @include('layouts.navbar')  
+        <div class="main-window">
+            <h1>
+                <span>სოციალური ბმულები</span>
+            </h1>
+            <div class="scroll-space">
+                @for( $i=0; $i<count($social_links); $i++)
+                <div class="main-container">
+                    <div class="icon-box">
+                        <img class="icon" src="{{ $social_links[$i]['img'] }}" />
+                        <img class="icon-edit" src="{{ asset('assets/icons/Edit Photo btn.svg') }}" />
+                    </div>
+                    <div class="name"> {{ $social_links[$i]['name'] }} </div>
+                    <a href="{{ $social_links[$i]['link'] }}" target="_blank"> {{ $social_links[$i]['link_shortened'] }} </a>
+                    <div class="edit">
+                        <div class="edit-outer"></div>
+                        <div class="edit-inner"></div>
+                    </div>
+                    <div class="delete">
+                        <div class="delete-outer"></div>
+                        <div class="delete-inner"></div>
+                    </div>
+                </div>
+                @endfor
             </div>
-        </a>
-    @endforeach
-
-    <body>
+            <div class="add-button">დაამატე ახალი სოციალური ბმული</div>
+        </div>
+    </body>
 </html>
-
-
-<style>
-    
-    .social-links{
-        width: 15%;
-        margin-left: 40%;
-        background-color: rgb(253,211,0);
-        text-align: center;
-        padding: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border: 2px solid lightyellow;
-        border-radius: 5%;
-    }
-
-    .social-links img{
-        width: 45px;
-        height: 45px;
-    }
-</style>

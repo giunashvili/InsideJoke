@@ -12,3 +12,8 @@
     font-family: BPGNinoMtavruliBold;
     src: url('../fonts/bpg_nino_mtavruli_bold.ttf')
 }
+
+@font-face{
+    font-family: RobotoRegular;
+    src: url('../fonts/Roboto-Regular.ttf')
+}
