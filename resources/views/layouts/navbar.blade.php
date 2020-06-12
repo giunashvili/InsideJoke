@@ -11,7 +11,7 @@
             <span>ჯგუფის წევრები</span>
         </div>
     </a>
-    <a href="{{ route('admin/soclinks') }}">
+    <a href="{{ route('soclinks') }}">
         <div class="nav-item"> 
             <img src="{{ asset('assets/icons/youtube.png') }}" />
             <span>სოციალური ბმულები</span>
