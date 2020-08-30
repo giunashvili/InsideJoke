@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route :: get(  'social_link/{id}'        ,  'SocialLinksController@find'   );
+Route :: post( 'social_link/{id}/delete' ,  'SocialLinksController@delete' );
+Route :: post( 'social_link/{id}/upload-image' ,  'SocialLinksController@uploadImage' );
