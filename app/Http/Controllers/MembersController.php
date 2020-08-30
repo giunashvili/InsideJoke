@@ -8,7 +8,7 @@ class MembersController extends Controller
 { 
     public function index()
     {
-        $group_members = Member::all() -> toArray();
+        $group_members = Member::all();
         return view('pages.members.index') 
             -> with("members", $group_members);
     }
