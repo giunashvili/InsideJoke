@@ -13,14 +13,14 @@
                 <span>სოციალური ბმულები</span>
             </h1>
             <div class="scroll-space">
-                @for( $i=0; $i<count($social_links); $i++)
+                @foreach($socialLinks as $socialLink )
                 <div class="main-container">
                     <div class="icon-box">
-                        <img class="icon" src="{{ $social_links[$i]['img'] }}" />
+                        <img class="icon" src="{{ $socialLink -> img }}" />
                         <img class="icon-edit" src="{{ asset('assets/icons/Edit Photo btn.svg') }}" />
                     </div>
-                    <div class="name"> {{ $social_links[$i]['name'] }} </div>
-                    <a href="{{ $social_links[$i]['link'] }}" target="_blank"> {{ $social_links[$i]['link_shortened'] }} </a>
+                    <div class="name"> {{ $socialLink -> name }} </div>
+                    <a href="{{ $socialLink -> link }}" target="_blank"> {{ $socialLink -> link_shortened }} </a>
                     <div class="edit">
                         <div class="edit-outer"></div>
                         <div class="edit-inner"></div>
@@ -30,7 +30,7 @@
                         <div class="delete-inner"></div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
             <div class="add-button">დაამატე ახალი სოციალური ბმული</div>
         </div>

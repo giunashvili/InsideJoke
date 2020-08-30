@@ -13,4 +13,3 @@ class AuthController extends Controller
         return view('pages.login.login');
     }
 }
-?>
