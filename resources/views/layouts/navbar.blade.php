@@ -23,7 +23,7 @@
             <span>ბენდის შესახებ</span>
         </div>
     </a>
-    <a href="{{ route('login') }}">
+    <a href="{{ route('logout') }}">
         <div class="nav-item"> 
             <img src="{{ asset('assets/icons/logout.png') }}" />
             <span>გადი გარეთ</span>
