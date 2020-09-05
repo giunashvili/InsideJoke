@@ -10,9 +10,10 @@
                 <img class="rectangle" src=" {{ asset('assets/imgs/rectangle.png') }} " />
                 <span class="heading-title">კარიბჭე</span>
         </div>
-        <form>
-            <input type="text" placeholder="მეტსახელი" class="input"/>
-            <input type="password" placeholder="პაროლი" class="input"/>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <input type="text" placeholder="მეტსახელი" class="input" name="name"/>
+            <input type="password" placeholder="პაროლი" class="input" name="password"/>
             <input type="submit" value="შემობრძანდი" class="input-btn" />
         </form>
         </div>
