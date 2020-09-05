@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Back;
 
+use App\Http\Requests\SocialLinks\UploadImage;
+use App\Http\Controllers\Controller;
 use App\Models\SocialLink;
 
 class SocialLinksController extends Controller
@@ -20,6 +22,16 @@ class SocialLinksController extends Controller
     }
 
     /**
+     * Get all the social links.
+     * 
+     * @return JSON
+     */
+    public function all()
+    {
+        return response() -> json(SocialLink::all());
+    }
+
+    /**
      * Find specific social link.
      * 
      * @param int $id
@@ -27,7 +39,7 @@ class SocialLinksController extends Controller
      */
     public function find( $id )
     {
-        return response() -> json(SocialLink :: findOrFail($id));
+        return response() -> json(SocialLink::findOrFail($id));
     }
 
     /**
@@ -61,26 +73,15 @@ class SocialLinksController extends Controller
      * 
      * @return JSON
      */
-    public function uploadImage($id)
-    {
-        $img = request() -> img;
-
-        if( ! $img -> isValid() )
-        {
-            return response() -> json(
-                [
-                    'code'   => 422,
-                    'status' => 'image is not valid!',
-                ]
-            );
-        }
-
-        $socialLink = SocialLink :: findOrFail($id);
-        $extension  = $img -> extension();
-        $name = 'Social Link - '. $id . ' - ' . now() -> timestamp . '.' . $extension;
+    public function uploadImage(UploadImage $request)
+    {   
+        $id         = $request -> id;
+        $img        = $request -> img;
+        $socialLink = SocialLink :: find($id);
+        $name       = $this -> generateImageName();
         $img -> storeAs('social_links', $name );
 
-        $path = storage_path('social_links/' . $name);
+        $path       = storage_path('social_links/' . $name);
         $socialLink -> image() -> create([ 'path' => $path ]);
 
         return response() -> json(
@@ -89,5 +90,15 @@ class SocialLinksController extends Controller
                 'status' => 'Image successfully submitted!',
             ]
         );
+    }
+
+    /**
+     * Generate image name.
+     * 
+     * @return string
+     */
+    private function generateImageName()
+    {
+        return 'Social Link - '. request() -> id . ' - ' . now() -> timestamp . '.' . request() -> img -> extension();
     }
 }
