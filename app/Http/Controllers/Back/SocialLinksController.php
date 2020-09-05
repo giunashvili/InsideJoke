@@ -22,6 +22,16 @@ class SocialLinksController extends Controller
     }
 
     /**
+     * Get all the social links.
+     * 
+     * @return JSON
+     */
+    public function all()
+    {
+        return response() -> json(SocialLink::all());
+    }
+
+    /**
      * Find specific social link.
      * 
      * @param int $id
@@ -29,7 +39,7 @@ class SocialLinksController extends Controller
      */
     public function find( $id )
     {
-        return response() -> json(SocialLink :: findOrFail($id));
+        return response() -> json(SocialLink::findOrFail($id));
     }
 
     /**
