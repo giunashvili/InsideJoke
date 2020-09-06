@@ -15,6 +15,11 @@
             <input type="text" placeholder="მეტსახელი" class="input" name="name"/>
             <input type="password" placeholder="პაროლი" class="input" name="password"/>
             <input type="submit" value="შემობრძანდი" class="input-btn" />
+            
+            @if(session('status') && session('status') == 404)
+                <!-- here should be displayed message that there is no matching user -->
+                <p style="color:red; text-shadow:1px 1px 1px #000; " align="center">მსგავსი ჩანაწერი არ მოიძებნა!</p>
+            @endif
         </form>
         </div>
     </body>

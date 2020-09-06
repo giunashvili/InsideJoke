@@ -20,8 +20,8 @@ Route::group(['namespace' => 'Auth'], function() {
     Route::get('register', 'AuthController@getRegister') -> name('register');
     
     Route::get('login' , 'AuthController@getLogin') -> name('login.view');
-    Route::post('login', 'AuthController@login')    -> name('login');
-    Route::get('logout', 'AuthController@logout')   -> name('logout');
+    Route::post('login', 'AuthController@login') -> name('login');
+    Route::get('logout', 'AuthController@logout') -> name('logout');
 });
 
 Route::group(['prefix' => 'test'], function(){
