@@ -39,8 +39,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()-> route('dashboard');
         }
-
-        return redirect() -> route('login.view');
+     
+        return redirect() -> route('login.view') -> with('status', 404);
     }
 
     /**
