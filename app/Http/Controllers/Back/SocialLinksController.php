@@ -28,7 +28,10 @@ class SocialLinksController extends Controller
      */
     public function all()
     {
-        return response() -> json(SocialLink::all());
+        $socialLinks = SocialLink::all();
+        SocialLink :: assignFormattedShortLink($socialLinks);
+
+        return response() -> json($socialLinks);
     }
 
     /**
