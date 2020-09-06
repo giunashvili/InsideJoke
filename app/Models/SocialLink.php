@@ -30,6 +30,21 @@ class SocialLink extends Model
             }
         });
     }
+    
+    /**
+     * Map image relationship path as attribute.
+     * 
+     * @param Collection $socialLinks
+     * @return void
+     */
+    public static function formatWithImage( &$socialLinks )
+    {
+        $socialLinks && $socialLinks -> each( function( $socialLink ) {
+            $socialLink -> img = null;
+            $socialLink -> image && $socialLink -> img = $socialLink -> image -> path;
+            unset($socialLink -> image);
+        });
+    }
 
     /**
      * Add polymorphic relationship to images.
@@ -39,5 +54,21 @@ class SocialLink extends Model
     public function image()
     {
         return $this -> morphOne(Image :: class, 'imageable');
+    }
+
+    /**
+     * Delete image with it's image file.
+     * 
+     * @return void
+     */
+    public function deleteImage()
+    {
+        if($this->image)
+        {
+            $path = explode('storage',$this->image->path);
+            $path = storage_path().'/app/public'.end($path);
+            unlink($path);
+            $this->image->delete();
+        }
     }
 }

@@ -16,8 +16,9 @@ class SocialLinksController extends Controller
      */
     public function index()
     {
-        $socialLinks = SocialLink::all();
+        $socialLinks = SocialLink::with('image')->get();
         SocialLink::assignFormattedShortLink($socialLinks);
+        SocialLink::formatWithImage($socialLinks);
 
         return view('pages.social_links.index') -> with('socialLinks', $socialLinks);
     }
@@ -39,8 +40,9 @@ class SocialLinksController extends Controller
      */
     public function all()
     {
-        $socialLinks = SocialLink::all();
-        SocialLink :: assignFormattedShortLink($socialLinks);
+        $socialLinks = SocialLink::with('image')->get();
+        SocialLink::assignFormattedShortLink($socialLinks);
+        SocialLink::formatWithImage($socialLinks);
 
         return response() -> json($socialLinks);
     }
@@ -88,14 +90,15 @@ class SocialLinksController extends Controller
      * @return JSON
      */
     public function uploadImage(UploadImage $request)
-    {   
-        $id         = $request -> id;
-        $img        = $request -> img;
-        $socialLink = SocialLink :: find($id);
+    {  
+        $id         = $request->id;
+        $img        = $request->img;
+        $socialLink = SocialLink::with('image')->find($id);
+        $socialLink -> deleteImage();
         $name       = $this -> generateImageName();
-        $img -> storeAs('social_links', $name );
+        $img -> storeAs('public/social_links', $name );
 
-        $path       = storage_path('social_links/' . $name);
+        $path       = '/storage/social_links/' . $name;
         $socialLink -> image() -> create([ 'path' => $path ]);
 
         return response() -> json(
