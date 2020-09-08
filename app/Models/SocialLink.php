@@ -23,10 +23,10 @@ class SocialLink extends Model
     {
         $socialLinks && $socialLinks -> each( function( $socialLink ) {
             if(strlen($socialLink -> link ) > 41){
-                $socialLink -> link_shortened = substr($socialLink -> link, 0, 40) . "...";
+                $socialLink -> linkshortened = substr($socialLink -> link, 0, 40) . "...";
             }
             else{
-                $socialLink -> link_shortened = $socialLink -> link;
+                $socialLink -> linkshortened = $socialLink -> link;
             }
         });
     }
