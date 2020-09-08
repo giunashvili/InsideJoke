@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Http\Requests\SocialLinks\CreateSocialLink;
 use App\Http\Requests\SocialLinks\UploadImage;
 use App\Http\Controllers\Controller;
 use App\Models\SocialLink;
@@ -16,9 +17,19 @@ class SocialLinksController extends Controller
     public function index()
     {
         $socialLinks = SocialLink::all();
-        SocialLink :: assignFormattedShortLink($socialLinks);
+        SocialLink::assignFormattedShortLink($socialLinks);
 
         return view('pages.social_links.index') -> with('socialLinks', $socialLinks);
+    }
+
+    /**
+     * Create social links record.
+     * 
+     * @return JSON
+     */
+    public function create(CreateSocialLink $request)
+    {
+        SocialLink::create($request->only('name','link'));
     }
 
     /**

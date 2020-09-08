@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route :: group(['prefix' => 'social_link', 'namespace' => 'Back'], function() {
+    Route :: post('create','SocialLinksController@create');
     Route :: get('all','SocialLinksController@all');
     Route :: get('{id}','SocialLinksController@find');
     Route :: post('{id}/delete','SocialLinksController@delete' );

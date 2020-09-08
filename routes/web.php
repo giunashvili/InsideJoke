@@ -26,4 +26,5 @@ Route::group(['namespace' => 'Auth'], function() {
 
 Route::group(['prefix' => 'test'], function(){
     Route::get('/', 'TestController') -> name('test.main');
+    Route::get('/add-soc-link', 'TestController@getSocialLink') -> name('test.add-soc-link');
 });
