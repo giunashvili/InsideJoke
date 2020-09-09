@@ -28,7 +28,6 @@ class UploadImage extends FormRequest
             'img' => [
                 'required',
                 'file',
-                'size:3072',
                 'mimes:jpeg,jpg,png',
                 function( $attribute, $value, $fail ) {
                     if(! $value -> isValid())

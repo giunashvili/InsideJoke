@@ -15,7 +15,7 @@ class MembersController extends Controller
      */ 
     public function index()
     {
-        return view('pages.members.index') -> with("members", Member::all());
+        return view('pages.members.index') -> with('members', Member::all());
     }
 
     /**
@@ -34,7 +34,7 @@ class MembersController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function find( $id )
+    public function find($id)
     {
         return response() -> json(Member::findOrFail($id));
     }
@@ -45,16 +45,16 @@ class MembersController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function delete( $id )
+    public function delete($id)
     {
         $data = [
             'code' => 200,
             'status' => 'success',
         ];
 
-        if( $member = Member :: find($id))
+        if( $member = Member::find($id))
         {
-            $member -> delete();
+            $member->delete();
         }
         else
         {
@@ -66,35 +66,20 @@ class MembersController extends Controller
     }
 
     /**
-     * Upload image for Member.
+     * Upload image for members.
      * 
      * @return JSON
      */
     public function uploadImage(UploadImage $request)
-    {   
-        $id     = $request -> id;
-        $img    = $request -> img;
-        $member = Member::find($id);
-        $name   = $this -> generateImageName();
-        $img -> storeAs('members', $name );
-        $path   = storage_path('members/' . $name);
-        $member -> image() -> create([ 'path' => $path ]);
+    {  
+        $socialLink = Member::with('image')->find($request->id);
+        $socialLink->storeImage($request->img);
 
-        return response() -> json(
+        return response()->json(
             [
                 'code' => 200,
                 'status' => 'Image successfully submitted!',
             ]
         );
-    }
-
-    /**
-     * Generate image name.
-     * 
-     * @return string
-     */
-    private function generateImageName()
-    {
-        return 'Member - '. request() -> id . ' - ' . now() -> timestamp . '.' . request() -> img -> extension();
     }
 }
