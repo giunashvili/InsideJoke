@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\ImageEntities;
 
 class SocialLink extends Model
 {
+    use ImageEntities;
+
     /**
      * Protected guard attribute for mass assignment.
      * 
@@ -54,21 +57,5 @@ class SocialLink extends Model
     public function image()
     {
         return $this -> morphOne(Image :: class, 'imageable');
-    }
-
-    /**
-     * Delete image with it's image file.
-     * 
-     * @return void
-     */
-    public function deleteImage()
-    {
-        if($this->image)
-        {
-            $path = explode('storage',$this->image->path);
-            $path = storage_path().'/app/public'.end($path);
-            unlink($path);
-            $this->image->delete();
-        }
     }
 }
