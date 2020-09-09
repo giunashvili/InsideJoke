@@ -13,14 +13,39 @@
                 <span>სოციალური ბმულები</span>
             </h1>
             <div class="scroll-space">
-                @foreach($socialLinks as $socialLink )
+               <img 
+                    src="https://i.pinimg.com/originals/51/77/40/5177402f9a223466db995ed7c25a6311.gif"
+                    style="width:440px; display:block; margin:auto"
+                />       
+            </div>
+            <div class="add-button">დაამატე ახალი სოციალური ბმული</div>
+        </div>
+    </body>
+</html>
+
+<script>
+    window.onload = function() {
+
+        const socialLinksContainer = document.getElementsByClassName('scroll-space')[0];
+        let socialLinks = '';
+
+        fetch('/api/social_link/all')
+            .then( result => result.json() )
+            .then( data => {
+
+               console.log(data);
+
+                for(i=0; i<data.length; i++)
+                {
+
+                socialLinks +=  `
                 <div class="main-container">
                     <div class="icon-box">
-                        <img class="icon" src="{{ $socialLink -> img }}" />
+                        <img class="icon" src="${data[i].img}" />
                         <img class="icon-edit" src="{{ asset('assets/icons/Edit Photo btn.svg') }}" />
                     </div>
-                    <div class="name"> {{ $socialLink -> name }} </div>
-                    <a href="{{ $socialLink -> link }}" target="_blank"> {{ $socialLink -> link_shortened }} </a>
+                    <div class="name"> ${data[i].name} </div>
+                    <a href="${data[i].link}" target="_blank"> ${data[i].linkshortened} </a>
                     <div class="edit">
                         <div class="edit-outer"></div>
                         <div class="edit-inner"></div>
@@ -30,9 +55,10 @@
                         <div class="delete-inner"></div>
                     </div>
                 </div>
-                @endforeach
-            </div>
-            <div class="add-button">დაამატე ახალი სოციალური ბმული</div>
-        </div>
-    </body>
-</html>
+                `;
+            }
+            
+            socialLinksContainer.innerHTML = socialLinks;
+    });
+    }
+</script>
