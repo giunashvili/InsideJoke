@@ -47,6 +47,7 @@ input[type=submit]{
     font-size: calc( 14rem / 16);
     letter-spacing: 1px;
     outline: none;
+    padding-top: 0.7%;
 }  
 
 input[type=submit]:hover{
