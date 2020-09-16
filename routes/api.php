@@ -30,3 +30,10 @@ Route::group(['prefix' => 'members', 'namespace' => 'Back'], function() {
     Route::post('{id}/delete','MembersController@delete' );
     Route::post('{id}/upload-image','MembersController@uploadImage' );
 });
+
+
+Route::group(['prefix' => 'about', 'namespace' => 'Back'], function() {
+    Route::get('info','AboutController@info');
+    Route::post('update','AboutController@update');
+    Route::post('upload-image','AboutController@uploadImage' );
+});
