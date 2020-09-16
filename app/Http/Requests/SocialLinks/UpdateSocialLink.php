@@ -25,8 +25,8 @@ class UpdateSocialLink extends FormRequest
     {
         return [
             'id'   => 'required|integer|exists:social_links',
-            'name' => 'required|string',
-            'link' => 'required|string',
+            'name' => 'string',
+            'link' => 'string',
         ];
     }
 }
