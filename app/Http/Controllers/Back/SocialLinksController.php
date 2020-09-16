@@ -32,6 +32,7 @@ class SocialLinksController extends Controller
     public function create(CreateSocialLink $request)
     {
         SocialLink::create($request->only('name','link'));
+        return response() -> json(['success' => true], 200);
     }
     
     /**
@@ -41,7 +42,17 @@ class SocialLinksController extends Controller
      */
     public function update(UpdateSocialLink $request)
     {
-        SocialLink::find($request->get('id'))->update($request->only('name','link'));
+        $name = $request->get('name');
+        $link = $request->get('link');
+
+        $socialLink = SocialLink::find($request->get('id'));
+
+        $name && $socialLink->name = $name;
+        $link && $socialLink->link = $link;
+        
+        $socialLink->save();
+
+        return response()->json(['success' => true], 200);
     }
 
     /**

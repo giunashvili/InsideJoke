@@ -42,8 +42,8 @@ trait ImageEntities
    */
   public function generateImageName()
   {
-    return $this->resourceName().' - '
-      .request()->id.' - ' 
+    return $this->resourceName().'_'
+      .request()->id.'_' 
       .now()->timestamp.'.' 
       .request()->img->extension();
   }

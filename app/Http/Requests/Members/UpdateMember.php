@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\SocialLinks;
+namespace App\Http\Requests\Members;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSocialLink extends FormRequest
+class UpdateMember extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class UpdateSocialLink extends FormRequest
         return [
             'id'   => 'required|integer|exists:social_links',
             'name' => 'string',
-            'link' => 'string',
+            'type' => 'string',
+            'description' => 'string',
         ];
     }
 }

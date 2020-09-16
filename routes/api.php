@@ -20,9 +20,11 @@ Route::group(['prefix' => 'social_link', 'namespace' => 'Back'], function() {
     Route::get('{id}','SocialLinksController@find');
     Route::post('{id}/delete','SocialLinksController@delete');
     Route::post('{id}/upload-image','SocialLinksController@uploadImage');
-});
+}); 
 
 Route::group(['prefix' => 'members', 'namespace' => 'Back'], function() {
+    Route::post('create','MembersController@create');
+    Route::post('update','MembersController@update');
     Route::get('all','MembersController@all');
     Route::get('{id}','MembersController@find');
     Route::post('{id}/delete','MembersController@delete' );
