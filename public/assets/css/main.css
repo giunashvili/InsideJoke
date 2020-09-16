@@ -5,6 +5,10 @@ body{
     align-items: center;
  }
 
+ .hidden{
+     display: none;
+ }
+
 .main-window{
     width: calc( 1308rem / 16 );
     height: calc( 864rem / 16 );
