@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Members;
+namespace App\Http\Requests\About;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,6 @@ class UploadImage extends FormRequest
     public function rules()
     {
         return [
-            'id'  => 'required|integer|exists:members',
             'img' => [
                 'required',
                 'file',

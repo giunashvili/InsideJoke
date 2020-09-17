@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Requests\SocialLinks\CreateSocialLink;
+use App\Http\Requests\SocialLinks\UpdateSocialLink;
 use App\Http\Requests\SocialLinks\UploadImage;
 use App\Http\Controllers\Controller;
 use App\Models\SocialLink;
@@ -16,8 +17,9 @@ class SocialLinksController extends Controller
      */
     public function index()
     {
-        $socialLinks = SocialLink::all();
+        $socialLinks = SocialLink::with('image')->get();
         SocialLink::assignFormattedShortLink($socialLinks);
+        SocialLink::formatWithImage($socialLinks);
 
         return view('pages.social_links.index') -> with('socialLinks', $socialLinks);
     }
@@ -30,6 +32,27 @@ class SocialLinksController extends Controller
     public function create(CreateSocialLink $request)
     {
         SocialLink::create($request->only('name','link'));
+        return response() -> json(['success' => true], 200);
+    }
+    
+    /**
+     * Update social links record.
+     * 
+     * @return JSON
+     */
+    public function update(UpdateSocialLink $request)
+    {
+        $name = $request->get('name');
+        $link = $request->get('link');
+
+        $socialLink = SocialLink::find($request->get('id'));
+
+        $name && $socialLink->name = $name;
+        $link && $socialLink->link = $link;
+        
+        $socialLink->save();
+
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -39,10 +62,11 @@ class SocialLinksController extends Controller
      */
     public function all()
     {
-        $socialLinks = SocialLink::all();
-        SocialLink :: assignFormattedShortLink($socialLinks);
+        $socialLinks = SocialLink::with('image')->get();
+        SocialLink::assignFormattedShortLink($socialLinks);
+        SocialLink::formatWithImage($socialLinks);
 
-        return response() -> json($socialLinks);
+        return response()->json($socialLinks);
     }
 
     /**
@@ -51,9 +75,9 @@ class SocialLinksController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function find( $id )
+    public function find($id)
     {
-        return response() -> json(SocialLink::findOrFail($id));
+        return response()->json(SocialLink::findOrFail($id));
     }
 
     /**
@@ -62,16 +86,16 @@ class SocialLinksController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function delete( $id )
+    public function delete($id)
     {
         $data = [
             'code' => 200,
             'status' => 'success',
         ];
 
-        if( $socialLink = SocialLink :: find($id))
+        if( $socialLink = SocialLink::find($id))
         {
-            $socialLink -> delete();
+            $socialLink->delete();
         }
         else
         {
@@ -79,7 +103,7 @@ class SocialLinksController extends Controller
             $data['status'] = 'failed to find and delete!';
         }
 
-        return response() -> json($data, $data['code']);
+        return response()->json($data, $data['code']);
     }
 
     /**
@@ -88,31 +112,15 @@ class SocialLinksController extends Controller
      * @return JSON
      */
     public function uploadImage(UploadImage $request)
-    {   
-        $id         = $request -> id;
-        $img        = $request -> img;
-        $socialLink = SocialLink :: find($id);
-        $name       = $this -> generateImageName();
-        $img -> storeAs('social_links', $name );
+    {  
+        $socialLink = SocialLink::with('image')->find($request->id);
+        $socialLink->storeImage($request->img);
 
-        $path       = storage_path('social_links/' . $name);
-        $socialLink -> image() -> create([ 'path' => $path ]);
-
-        return response() -> json(
+        return response()->json(
             [
                 'code' => 200,
                 'status' => 'Image successfully submitted!',
             ]
         );
-    }
-
-    /**
-     * Generate image name.
-     * 
-     * @return string
-     */
-    private function generateImageName()
-    {
-        return 'Social Link - '. request() -> id . ' - ' . now() -> timestamp . '.' . request() -> img -> extension();
     }
 }

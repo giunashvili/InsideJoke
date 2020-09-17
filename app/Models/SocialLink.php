@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\ImageEntities;
 use Illuminate\Database\Eloquent\Model;
 
 class SocialLink extends Model
 {
+    use ImageEntities;
+
     /**
      * Protected guard attribute for mass assignment.
      * 
@@ -28,6 +31,21 @@ class SocialLink extends Model
             else{
                 $socialLink -> linkshortened = $socialLink -> link;
             }
+        });
+    }
+    
+    /**
+     * Map image relationship path as attribute.
+     * 
+     * @param Collection $socialLinks
+     * @return void
+     */
+    public static function formatWithImage( &$socialLinks )
+    {
+        $socialLinks && $socialLinks -> each( function( $socialLink ) {
+            $socialLink -> img = null;
+            $socialLink -> image && $socialLink -> img = $socialLink -> image -> path;
+            unset($socialLink -> image);
         });
     }
 

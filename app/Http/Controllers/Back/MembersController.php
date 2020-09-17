@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Requests\Members\UploadImage;
-use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Members\UploadImage;
+use App\Http\Requests\Members\CreateMember;
+use App\Http\Requests\Members\UpdateMember;
 
 class MembersController extends Controller
 {
@@ -15,7 +17,43 @@ class MembersController extends Controller
      */ 
     public function index()
     {
-        return view('pages.members.index') -> with("members", Member::all());
+        $members = Member::with('image')->get();
+        Member::formatWithImage($members);
+
+        return view('pages.members.index') -> with('members', $members);
+    }
+
+    /**
+     * Create member record.
+     * 
+     * @return JSON
+     */
+    public function create(CreateMember $request)
+    {
+        Member::create($request->only('name','type','description'));
+        return response() -> json(['success' => true], 200);
+    }
+
+    /**
+     * Update member record.
+     * 
+     * @return JSON
+     */
+    public function update(UpdateMember $request)
+    {
+        $name = $request->get('name');
+        $type = $request->get('type');
+        $description = $request->get('description');
+
+        $socialLink = Member::find($request->get('id'));
+
+        $name && $socialLink->name = $name;
+        $type && $socialLink->type = $type;
+        $description && $socialLink->description = $description;
+        
+        $socialLink->save();
+
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -25,7 +63,10 @@ class MembersController extends Controller
      */
     public function all()
     {
-        return response() -> json(Member::all());
+        $members = Member::with('image')->get();
+        Member::formatWithImage($members);
+
+        return response() -> json($members);
     }
 
     /**
@@ -34,7 +75,7 @@ class MembersController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function find( $id )
+    public function find($id)
     {
         return response() -> json(Member::findOrFail($id));
     }
@@ -45,16 +86,16 @@ class MembersController extends Controller
      * @param int $id
      * @return JSON
      */
-    public function delete( $id )
+    public function delete($id)
     {
         $data = [
             'code' => 200,
             'status' => 'success',
         ];
 
-        if( $member = Member :: find($id))
+        if( $member = Member::find($id))
         {
-            $member -> delete();
+            $member->delete();
         }
         else
         {
@@ -66,35 +107,20 @@ class MembersController extends Controller
     }
 
     /**
-     * Upload image for Member.
+     * Upload image for members.
      * 
      * @return JSON
      */
     public function uploadImage(UploadImage $request)
-    {   
-        $id     = $request -> id;
-        $img    = $request -> img;
-        $member = Member::find($id);
-        $name   = $this -> generateImageName();
-        $img -> storeAs('members', $name );
-        $path   = storage_path('members/' . $name);
-        $member -> image() -> create([ 'path' => $path ]);
+    {  
+        $member = Member::with('image')->find($request->id);
+        $member->storeImage($request->img);
 
-        return response() -> json(
+        return response()->json(
             [
                 'code' => 200,
                 'status' => 'Image successfully submitted!',
             ]
         );
-    }
-
-    /**
-     * Generate image name.
-     * 
-     * @return string
-     */
-    private function generateImageName()
-    {
-        return 'Member - '. request() -> id . ' - ' . now() -> timestamp . '.' . request() -> img -> extension();
     }
 }
