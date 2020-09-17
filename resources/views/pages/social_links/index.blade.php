@@ -19,7 +19,7 @@
                     style="width:440px; display:block; margin:auto"
                 />
             </div>
-            <div class="add-button" onclick="function newSocialLink()">დაამატე ახალი სოციალური ბმული</div>
+            <div class="add-button" onclick="newSocialLink()">დაამატე ახალი სოციალური ბმული</div>
         </div>
     </body>
 </html>

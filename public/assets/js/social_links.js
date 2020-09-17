@@ -20,7 +20,7 @@ function renderSocialLinks(){
             <div class="main-container">
                 <div class="icon-box">
                     <img class="icon" src="${data[i].img}" />
-                    <img class="icon-edit" src="{{ asset('assets/icons/Edit Photo btn.svg') }}" />
+                    <img class="icon-edit" src="/assets/icons/Edit Photo btn.svg" />
                 </div>
                 <div class="name"> ${data[i].name} </div>
                 <a href="${data[i].link}" target="_blank"> ${data[i].linkshortened} </a>
@@ -76,7 +76,7 @@ function createNewSocialLink()
     const name = document.getElementById("addNewSoclinkName").value;
     const link = document.getElementById("addNewSoclinkURL").value;
 
-    fetch('api/social_link/create', {
+    fetch('/api/social_link/create', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
