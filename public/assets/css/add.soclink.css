@@ -32,7 +32,7 @@ input[type=url]{
     outline: none;
 }   
 
-input[type=submit]{
+input[type=button]{
     display: block;
     width: calc( 289rem / 16 );
     height: calc( 50rem / 16 );
@@ -50,6 +50,6 @@ input[type=submit]{
     padding-top: 0.7%;
 }  
 
-input[type=submit]:hover{
+input[type=button]:hover{
     cursor: pointer;
 }
