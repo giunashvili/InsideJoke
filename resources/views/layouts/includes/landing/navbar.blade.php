@@ -1,6 +1,6 @@
 <ul class="navigation">
   <li>
-    <a href="">
+    <a href="{{ route('register') }}">
       რეგისტრაცია
     </a>
   </li>
