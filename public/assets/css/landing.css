@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body{
+  background: radial-gradient(50% 50% at 50% 50%, #534571 0%, #342C46 100%);
+  padding-top: calc(24rem / 16);
+  padding-left: calc(81rem / 16);
+  padding-right: calc(81rem / 16);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header div.logo {
+  width: calc(167rem / 16);
+
+}
+
+header div.logo img {
+  width: 100%;
+}
+
+header ul.navigation {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+header ul.navigation li {
+  margin-left: calc(40rem / 16 );
+}
+
+header ul.navigation li a{
+  color: white;
+  font-family: BPGNinoMtavruli;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: calc(16rem / 16);
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  flex:1;
+}
+
+main .solar-system {
+  flex: 1;
+}
+
+main .information-panel {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+main .information-panel .description {
+  width: calc(682rem / 16);
+  height: calc(616rem / 16);
+  background-color: #FBD560;
+  border-radius: 20px;
+  position: relative;
+}
+
+main .information-panel .description .logo {
+  position: absolute;
+  width: calc(313rem / 16);
+  height: calc(313rem / 16);
+  overflow: hidden;
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(2px 4px 14px #000000);
+}
+
+main .information-panel .description .logo img {
+  width: 100%;
+}
+
+main .information-panel .description p {
+  width: calc(535rem / 16);
+  height: calc(337rem / 16);
+  margin-top: calc(192rem / 16);
+  margin-left: calc(65rem / 16);
+  margin-right: calc(32rem / 16);
+  padding-right: calc(50rem / 16);
+  margin-bottom: calc(42rem / 16);
+  font-family: BPGArial;
+  font-size: calc(18rem / 16);
+  line-height: calc(25rem / 16);
+  text-align: justify;
+  overflow-y: auto;
+  color: #333333;
+}
+
+main .information-panel .description .social-links {
+  position: absolute;
+  bottom: calc(-56rem / 16);
+  left:50%;
+  transform: translateX(-50%);
+}
+
+main .information-panel .description .social-links img{
+  height: calc(35rem / 16);
+  margin-right: calc(23rem / 16);
+  margin-left: calc(23rem / 16);
+}
+
+main .information-panel .description p::-webkit-scrollbar {
+  width: calc( 8rem / 16 );
+  background: #143B52; 
+  border-radius: 20000px;
+}
+
+main .information-panel .description p::-webkit-scrollbar-thumb {
+  border: calc( 8rem / 16 ) solid white;
+  border-radius: 20000px;
+}
+
+main .information-panel .description p::-webkit-scrollbar-thumb:hover {
+  border: calc( 8rem / 16 ) solid white;
+}
+
+@media(max-width: 1366px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media(max-width: 1280px) {
+  html {
+    font-size: 11px;
+  }
+}
