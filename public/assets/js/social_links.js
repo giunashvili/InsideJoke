@@ -26,7 +26,7 @@ function renderSocialLinks(){
             socialLinks +=  `
             <div class="main-container">
                 <div class="icon-box">
-                    <img class="icon" src="${data[i].img}" />
+                    <img class="icon" src="${img}" />
                     <img class="icon-edit" src="/assets/icons/Edit Photo btn.svg" />
                 </div>
                 <div class="name"> ${data[i].name} </div>
