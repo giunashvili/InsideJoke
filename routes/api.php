@@ -19,7 +19,7 @@ Route::group(['prefix' => 'social_link', 'namespace' => 'Back'], function() {
     Route::get('all','SocialLinksController@all');
     Route::get('{id}','SocialLinksController@find');
     Route::post('{id}/delete','SocialLinksController@delete');
-    Route::post('{id}/upload-image','SocialLinksController@uploadImage');
+    Route::post('upload-image','SocialLinksController@uploadImage');
 }); 
 
 Route::group(['prefix' => 'members', 'namespace' => 'Back'], function() {
@@ -28,7 +28,7 @@ Route::group(['prefix' => 'members', 'namespace' => 'Back'], function() {
     Route::get('all','MembersController@all');
     Route::get('{id}','MembersController@find');
     Route::post('{id}/delete','MembersController@delete' );
-    Route::post('{id}/upload-image','MembersController@uploadImage' );
+    Route::post('upload-image','MembersController@uploadImage' );
 });
 
 

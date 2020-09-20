@@ -135,6 +135,65 @@ main .information-panel .description p::-webkit-scrollbar-thumb:hover {
   border: calc( 8rem / 16 ) solid white;
 }
 
+main .solar-system .sunote {
+  width: calc(857rem / 16);
+}
+
+main .solar-system .circle {
+  border: 1px dashed #F2C94C;
+  border-radius: 50%;
+}
+
+main .solar-system .avatar .bg {
+  width: calc(60rem / 16);
+  height: calc(60rem / 16);
+  border-radius: 50%;
+  border-width: 2px;
+  border-color: #F2C94C;
+  border-style: solid;
+}
+
+main .solar-system .avatar {
+  position: absolute;
+}
+
+main .solar-system .avatar .title {
+  width: calc(77rem / 16);
+  height: calc(24rem / 16);
+  background-color: #F2C94C;
+  border-radius: 25px;
+  border-width: 2px;
+  border-style: solid;
+  position: absolute;
+  left: 50%;
+  bottom: calc(-10rem / 16);
+  transform: translateX(-50%);
+  font-family: BPGNinoMtavruli;
+  text-align: center;
+}
+
+main .solar-system .avatar .bg img {
+  width: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolutely-center
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.absolutely-center-in-relative {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
 @media(max-width: 1366px) {
   html {
     font-size: 12px;
