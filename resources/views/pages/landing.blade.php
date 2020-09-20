@@ -10,8 +10,9 @@
       @include('layouts.includes.landing.navbar')
     </header>
     <main>
-      <section class="solar-system"></section>
+      @include('layouts.includes.landing.solar-system')
       @include('layouts.includes.landing.about')
     </main>
+    <script src="{{ asset('assets/js/landing.js') }}"></script>
   </body>
 </html>
