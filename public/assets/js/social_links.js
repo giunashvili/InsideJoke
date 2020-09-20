@@ -16,10 +16,17 @@ function renderSocialLinks(){
             for(i=0; i<data.length; i++)
             {
 
+            let img = '/assets/icons/Edit Photo btn.svg';
+
+            if(data[i].img != null)
+            {
+                img = data[i].img;
+            }
+
             socialLinks +=  `
             <div class="main-container">
                 <div class="icon-box">
-                    <img class="icon" src="${data[i].img}" />
+                    <img class="icon" src="${img}" />
                     <img class="icon-edit" src="/assets/icons/Edit Photo btn.svg" />
                 </div>
                 <div class="name"> ${data[i].name} </div>
@@ -64,8 +71,8 @@ function newSocialLink() {
      header.innerHTML = 'დაამატე ახალი სოციალური ბმული';
 
      /*
-     * 3) HIDE 'დაამატე ახალი სოციალური ბმული' button
-     */
+      * 3) HIDE 'დაამატე ახალი სოციალური ბმული' button
+      */
      const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
      createSocialLinkbtn.classList.add('hidden');
 
@@ -89,7 +96,23 @@ function createNewSocialLink()
     })
     .then(response => response.json())
     .then(data => {
+
+        /*
+         * 1) REPLACE form with a list
+         */
         renderSocialLinks();
+
+        /*
+         * 2) ADD "add" button
+         */
+        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
+        createSocialLinkbtn.classList.remove('hidden');
+
+        /*
+         * 3) CHANGE header
+         */
+        const header = document.getElementsByClassName('social-links-header')[0];
+        header.innerHTML = 'სოციალური ბმულები';
     })
     .catch(err => console.log(err));
 }
