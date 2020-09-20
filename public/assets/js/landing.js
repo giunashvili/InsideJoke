@@ -2,6 +2,7 @@
  * Global state.
  */
 const state = {
+  members: [],
   degrees: [],
   distances: [ 
     230 / 2,
@@ -19,13 +20,11 @@ const state = {
 /**
  * Start moving process when page is loaded.
  */
-const startMoving = () => {
+const startMoving = async () => {
+  await getMembers();
+  setInitialDegrees();
   const avatars = document.querySelectorAll('.avatar');
-  avatars.forEach(() => state.degrees.push(0));
   setInterval(shift.bind(this, avatars), state.const.interval);
-  setInterval(() => {
-   console.log(state)
-  }, 7000);
 }
 
 /**
@@ -61,6 +60,19 @@ const calculate = {
     return `transform: rotateZ(${-degree}deg)`;
   }
 };
+
+const getMembers = () => {
+  return fetch('/api/members/all')
+    .then(data => data.json())
+    .then(data => {
+      state.members = data;
+    })
+    .catch(e => console.error(e));
+}
+
+const setInitialDegrees = () => {
+  state.degrees = [...document.querySelectorAll('.initial-degree')].map(el => +el.value);
+}
 
 /**
  * Start main function when page is loaded.
