@@ -32,12 +32,25 @@ class Member extends Model
      * @param Collection $members
      * @return void
      */
-    public static function formatWithImage( &$members )
+    public static function formatWithImage(&$members)
     {
-        $members && $members -> each( function( $member ) {
-            $member -> img = null;
-            $member -> image && $member -> img = $member -> image -> path;
-            unset($member -> image);
+        $members && $members->each( function($member) {
+            $member->img = null;
+            $member->image && $member->img = $member->image->path;
+            unset($member->image);
+        });
+    }
+
+    /**
+     * Assign members random degrees.
+     * 
+     * @param $members
+     * @return void
+     */
+    public static function assignRandomDegrees(&$members)
+    {
+        $members && $members->each(function($member) {
+            $member->degree = random_int(0, 360);
         });
     }
 }

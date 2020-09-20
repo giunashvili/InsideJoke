@@ -20,9 +20,9 @@
 
         <div 
           class="avatar" 
-          style="transform: translate(calc(({{ $distance }}rem / 16) - 50% ), -50%) rotateZ(0deg);
+          style="transform: translate(calc(({{ $distance }}rem / 16) - 50% ), -50%) rotateZ({{$member->degree}}deg);
                  transform-origin: calc({{-$distance}}rem / 16 + 50%)" >
-          <div class="rotator" style="transform: rotateZ(0deg)">
+          <div class="rotator" style="transform: rotateZ({{-$member->degree}}deg)">
             <div class="bg" style="background-color: {{ $color }}">
                 <img src="{{ $member->img }}" />
               </div>

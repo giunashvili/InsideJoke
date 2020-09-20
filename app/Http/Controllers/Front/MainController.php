@@ -20,6 +20,7 @@ class MainController extends Controller
 
       $members = Member::with('image')->get();
       Member::formatWithImage($members);
+      Member::assignRandomDegrees($members);
 
       $colors = [
         '#EB5757',
