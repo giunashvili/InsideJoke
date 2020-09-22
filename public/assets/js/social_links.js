@@ -38,7 +38,7 @@ function renderSocialLinks(){
                     <div class="edit-outer"></div>
                     <div class="edit-inner"></div>
                 </div>
-                <div class="delete">
+                <div class="delete" onclick="deleteSocialLink(${data[i].id})">
                     <div class="delete-outer"></div>
                     <div class="delete-inner"></div>
                 </div>
@@ -141,6 +141,26 @@ function closeChangeSoclinkIconModal(){
     backgroundfilter.style.display='none';
 }
 
+function deleteSocialLink(id){
+    const result = confirm("წაიშალოს სოციალური ბმული?")
+
+    if(result)
+    {
+        fetch(`/api/social_link/${id}/delete`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(data => data.json())
+        .then(data => {
+            alert('სოციალური ბმული წარმატებით წაიშალა!');
+            renderSocialLinks();
+        })
+        .catch(err => console.log(err))
+    }
+}
 
 
     
