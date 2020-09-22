@@ -27,7 +27,10 @@ function renderSocialLinks(){
             <div class="main-container">
                 <div class="icon-box">
                     <img class="icon" src="${img}" />
-                    <img class="icon-edit" src="/assets/icons/Edit Photo btn.svg" />
+                    <img 
+                        class="icon-edit" src="/assets/icons/Edit Photo btn.svg" 
+                        onclick="openChangeSoclinkIconModal()"
+                    />
                 </div>
                 <div class="name"> ${data[i].name} </div>
                 <a href="${data[i].link}" target="_blank"> ${data[i].linkshortened} </a>
@@ -44,6 +47,8 @@ function renderSocialLinks(){
         }
         
         socialLinksContainer.innerHTML = socialLinks;
+
+        
 });
 }
 
@@ -116,3 +121,26 @@ function createNewSocialLink()
     })
     .catch(err => console.log(err));
 }
+
+
+function openChangeSoclinkIconModal(){
+    const modal = document.getElementById('uploadModal');
+    const backgroundfilter = document.getElementById('bg-filter');
+
+    modal.style.display='block';
+    modal.style.zIndex='99999';
+    backgroundfilter.style.display='block';
+    backgroundfilter.style.zIndex='10';
+}
+
+function closeChangeSoclinkIconModal(){
+    const modal = document.getElementById('uploadModal');
+    const backgroundfilter = document.getElementById('bg-filter');
+    
+    modal.style.display='none';
+    backgroundfilter.style.display='none';
+}
+
+
+
+    

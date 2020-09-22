@@ -5,10 +5,12 @@
         <link rel="stylesheet" href="{{ asset('assets/css/soclinks.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/add.soclink.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/change.slinkicon.css') }}" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,100italic,300italic,400italic,500italic,500,700,700italic,900,900italic' rel='stylesheet' type='text/css' />
     </head>
-    <body>
-        @include('layouts.navbar')  
+    <body> 
+        @include('layouts.navbar') 
+        @include('layouts.modal')
         <div class="main-window">
             <h1>
                 <span class="social-links-header">სოციალური ბმულები</span>
