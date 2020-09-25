@@ -6,7 +6,7 @@
         
         <span class="social-links-modal-header">შეცვალე სოციალური ბმულის ხატულა</span><br>
 
-        <span class="sociallinkname">სოციალური ბმულის სახელი</span><br>
+        <span class="sociallinkname" id="socialLinkNameInModal">სოციალური ბმულის სახელი</span><br>
         <img class="slink-icon" src="/assets/icons/Edit Photo btn.svg"/><br>
 
         <label class="upload-label" for="slink-img-upload">ატვირთე</label><br>

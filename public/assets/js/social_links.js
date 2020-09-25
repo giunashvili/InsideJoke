@@ -1,3 +1,5 @@
+let mainSocialLinks = null;
+
 window.onload = function () {
     renderSocialLinks(); 
 };
@@ -12,6 +14,8 @@ function renderSocialLinks(){
         .then( data => {
 
            console.log(data);
+
+           mainSocialLinks = data;
 
             for(i=0; i<data.length; i++)
             {
@@ -29,12 +33,12 @@ function renderSocialLinks(){
                     <img class="icon" src="${img}" />
                     <img 
                         class="icon-edit" src="/assets/icons/Edit Photo btn.svg" 
-                        onclick="openChangeSoclinkIconModal()"
+                        onclick="openChangeSoclinkIconModal(${data[i].id})"
                     />
                 </div>
                 <div class="name"> ${data[i].name} </div>
                 <a href="${data[i].link}" target="_blank"> ${data[i].linkshortened} </a>
-                <div class="edit">
+                <div class="edit" onclick="editSocialLink(${data[i].id})">
                     <div class="edit-outer"></div>
                     <div class="edit-inner"></div>
                 </div>
@@ -123,7 +127,19 @@ function createNewSocialLink()
 }
 
 
-function openChangeSoclinkIconModal(){
+function openChangeSoclinkIconModal(id){
+    console.log(id);
+    console.log(mainSocialLinks);
+
+    let selectedSocialLink = null;
+    for(i=0; i<mainSocialLinks.length; i++){
+        if(mainSocialLinks[i].id == id){
+            selectedSocialLink = mainSocialLinks[i];
+        }    
+    }
+    const socialLinkName = selectedSocialLink.name;
+    console.log(socialLinkName);
+
     const modal = document.getElementById('uploadModal');
     const backgroundfilter = document.getElementById('bg-filter');
 
@@ -131,14 +147,18 @@ function openChangeSoclinkIconModal(){
     modal.style.zIndex='99999';
     backgroundfilter.style.display='block';
     backgroundfilter.style.zIndex='10';
+
+    socialLinkNameInModal.innerHTML = socialLinkName;
+
 }
 
 function closeChangeSoclinkIconModal(){
     const modal = document.getElementById('uploadModal');
     const backgroundfilter = document.getElementById('bg-filter');
-    
+
     modal.style.display='none';
     backgroundfilter.style.display='none';
+
 }
 
 function deleteSocialLink(id){
@@ -146,6 +166,8 @@ function deleteSocialLink(id){
 
     if(result)
     {
+        beautifulLoader();
+
         fetch(`/api/social_link/${id}/delete`, {
             method: 'POST',
             headers: {
@@ -162,5 +184,52 @@ function deleteSocialLink(id){
     }
 }
 
+function beautifulLoader(){
+    const socialLinksContainer = document.getElementsByClassName('scroll-space')[0];
+    const loader = `
+        <img 
+        src="https://i.pinimg.com/originals/51/77/40/5177402f9a223466db995ed7c25a6311.gif"
+        style="width:440px; display:block; margin:auto"
+        />
+        `
 
+    socialLinksContainer.innerHTML = loader;
+}
+
+function editSocialLink(id){
+
+    /*
+     * 1) REPLACE Social Links list with CHANGE form
+     */
+    const socialLinksContainer = document.getElementsByClassName('scroll-space')[0];
+
+    let selectedSocialLink = null;
+    for(i=0; i<mainSocialLinks.length; i++){
+        if(mainSocialLinks[i].id == id){
+            selectedSocialLink = mainSocialLinks[i];
+        }    
+    }
+    const socialLinkName = selectedSocialLink.name;
+    const socialLinkURL = selectedSocialLink.link;
+
+    const form = `
+    <form>
+    <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}"><br>
+    <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული" value="${socialLinkURL}"><br>
+    <input type="button" id="saveBlueButton" value="შენახვა">
+    </form> 
+    `;
     
+    socialLinksContainer.innerHTML = form; 
+
+    document.getElementById("saveBlueButton").style.width = "calc( 130rem/16 )";
+
+    console.log(socialLinkURL);
+
+     /*
+      * 2) HIDE 'დაამატე ახალი სოციალური ბმული' button
+      */
+     const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
+     createSocialLinkbtn.classList.add('hidden');
+    
+}
