@@ -13,8 +13,6 @@ function renderSocialLinks(){
         .then( result => result.json() )
         .then( data => {
 
-           console.log(data);
-
            mainSocialLinks = data;
 
             for(i=0; i<data.length; i++)
@@ -38,7 +36,7 @@ function renderSocialLinks(){
                 </div>
                 <div class="name"> ${data[i].name} </div>
                 <a href="${data[i].link}" target="_blank"> ${data[i].linkshortened} </a>
-                <div class="edit" onclick="editSocialLink(${data[i].id})">
+                <div class="edit" onclick="renderEditSocialLink(${data[i].id})">
                     <div class="edit-outer"></div>
                     <div class="edit-inner"></div>
                 </div>
@@ -128,8 +126,6 @@ function createNewSocialLink()
 
 
 function openChangeSoclinkIconModal(id){
-    console.log(id);
-    console.log(mainSocialLinks);
 
     let selectedSocialLink = null;
     for(i=0; i<mainSocialLinks.length; i++){
@@ -138,7 +134,6 @@ function openChangeSoclinkIconModal(id){
         }    
     }
     const socialLinkName = selectedSocialLink.name;
-    console.log(socialLinkName);
 
     const modal = document.getElementById('uploadModal');
     const backgroundfilter = document.getElementById('bg-filter');
@@ -196,7 +191,7 @@ function beautifulLoader(){
     socialLinksContainer.innerHTML = loader;
 }
 
-function editSocialLink(id){
+function renderEditSocialLink(id){
 
     /*
      * 1) REPLACE Social Links list with CHANGE form
@@ -214,17 +209,15 @@ function editSocialLink(id){
 
     const form = `
     <form>
-    <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}"><br>
-    <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული" value="${socialLinkURL}"><br>
-    <input type="button" id="saveBlueButton" value="შენახვა">
+    <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}"><br>
+    <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}"><br>
+    <input type="button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
     </form> 
     `;
-    
+
     socialLinksContainer.innerHTML = form; 
 
     document.getElementById("saveBlueButton").style.width = "calc( 130rem/16 )";
-
-    console.log(socialLinkURL);
 
      /*
       * 2) HIDE 'დაამატე ახალი სოციალური ბმული' button
@@ -232,4 +225,37 @@ function editSocialLink(id){
      const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
      createSocialLinkbtn.classList.add('hidden');
     
+}
+
+function editSocialLink(id){
+
+    const name = document.getElementById('editSoclinkName').value;
+    const link = document.getElementById('editSoclinkURL').value;
+
+    const dataToSend = JSON.stringify({
+        id: id,
+        name: name,
+        link: link,
+    });
+
+    fetch('/api/social_link/update', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: dataToSend
+    })
+    .then(data => data.json())
+    .then(data => {
+        alert('სოციალური ბმული წარმატებით განახლდა!');
+        beautifulLoader();
+        renderSocialLinks();
+        /*
+         * ADD removed "add" button
+         */
+        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
+        createSocialLinkbtn.classList.remove('hidden');
+    })
+    .catch(err => console.log(err))
 }
