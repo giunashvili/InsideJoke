@@ -7,7 +7,7 @@ const state = {
   distances: [],
   const:{
     incrementDegree: .1,
-    interval: 40,
+    interval: 50,
   }
 };
 
@@ -36,7 +36,7 @@ const shift = (avatars) => {
     const innerTransformations = calculate.innerTransformation(degree);
     
     avatar.setAttribute('style', outerTransformations);
-    innerAvatar.setAttribute('style', innerTransformations);
+    // innerAvatar.setAttribute('style', innerTransformations);
   });
 }
 
