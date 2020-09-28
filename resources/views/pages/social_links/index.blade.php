@@ -17,7 +17,7 @@
             </h1>
             <div class="scroll-space">
                <img 
-                    src="https://i.pinimg.com/originals/51/77/40/5177402f9a223466db995ed7c25a6311.gif"
+                    src="{{ asset('assets/imgs/loader.gif') }}"
                     style="width:440px; display:block; margin:auto"
                 />
             </div>

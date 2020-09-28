@@ -62,8 +62,8 @@ function newSocialLink() {
     const socialLinksContainer = document.getElementsByClassName('scroll-space')[0];
     const form = `
     <form>
-    <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური"><br>
-    <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული"><br>
+    <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური">
+    <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული">
     <input type="button" onclick="createNewSocialLink()" value="დაამატე სოციალური ბმული">
     </form> 
     `;
@@ -183,7 +183,7 @@ function beautifulLoader(){
     const socialLinksContainer = document.getElementsByClassName('scroll-space')[0];
     const loader = `
         <img 
-        src="https://i.pinimg.com/originals/51/77/40/5177402f9a223466db995ed7c25a6311.gif"
+        src="/assets/imgs/loader.gif"
         style="width:440px; display:block; margin:auto"
         />
         `
@@ -209,8 +209,8 @@ function renderEditSocialLink(id){
 
     const form = `
     <form>
-    <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}"><br>
-    <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}"><br>
+    <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}">
+    <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}">
     <input type="button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
     </form> 
     `;
