@@ -18,7 +18,7 @@ function renderSocialLinks(){
             for(i=0; i<data.length; i++)
             {
 
-            let img = '/assets/icons/Edit Photo btn.svg';
+            let img = '/assets/icons/EditPhotoBtn.svg';
 
             if(data[i].img != null)
             {
@@ -30,7 +30,7 @@ function renderSocialLinks(){
                 <div class="icon-box">
                     <img class="icon" src="${img}" />
                     <img 
-                        class="icon-edit" src="/assets/icons/Edit Photo btn.svg" 
+                        class="icon-edit" src="/assets/icons/EditPhotoBtn.svg" 
                         onclick="openChangeSoclinkIconModal(${data[i].id})"
                     />
                 </div>
@@ -127,6 +127,10 @@ function createNewSocialLink()
 
 function openChangeSoclinkIconModal(id){
 
+    setSocialLinkIdForPhotoChange(id);
+
+    clearUploadedFiles();
+
     let selectedSocialLink = null;
     for(i=0; i<mainSocialLinks.length; i++){
         if(mainSocialLinks[i].id == id){
@@ -145,6 +149,34 @@ function openChangeSoclinkIconModal(id){
 
     socialLinkNameInModal.innerHTML = socialLinkName;
 
+    // SHOW Relevant ICON
+    const socialLinkIcon = document.querySelector('.slink-icon');
+    socialLinkIcon.setAttribute('src', `${selectedSocialLink.img}`);
+}
+
+function setSocialLinkIdForPhotoChange(id){
+    document.getElementById('social_link_id').setAttribute('value', id);    
+}
+
+function getSocialLinkIdForPhotoChange(){
+    return document.getElementById('social_link_id').value; 
+}
+
+function clearUploadedFiles(){
+
+        const imageFileElement = document.querySelector('#slink-img-upload');
+        const files = imageFileElement.files;
+        const uploadButton = document.querySelector('.upload-label');
+    
+        const blueForButton = '#143B52';
+        const oldButtonName = `ატვირთე`;
+    
+        imageFileElement.value = "";
+    
+        if(files.length == 0){
+            uploadButton.style.background = blueForButton;
+            uploadButton.innerHTML = oldButtonName;
+        }
 }
 
 function closeChangeSoclinkIconModal(){
@@ -153,7 +185,6 @@ function closeChangeSoclinkIconModal(){
 
     modal.style.display='none';
     backgroundfilter.style.display='none';
-
 }
 
 function deleteSocialLink(id){
@@ -258,4 +289,51 @@ function editSocialLink(id){
         createSocialLinkbtn.classList.remove('hidden');
     })
     .catch(err => console.log(err))
+}
+
+function changeImageInput(){
+
+    const imageFileElement = document.querySelector('#slink-img-upload');
+    const files = imageFileElement.files;
+    const image = document.querySelector('.slink-icon');
+
+    const uploadButton = document.querySelector('.upload-label');
+
+    const greenForButton = '#53C02C';
+    const newButtonName = `შენახვა`;
+
+    if(files.length > 0){
+        const file = files[0];
+        const path = URL.createObjectURL(file);
+        image.setAttribute('src', path);
+        uploadButton.style.background = greenForButton;
+        uploadButton.innerHTML = newButtonName;
+    }
+}
+
+function uploadImgToServer(e){
+    const imageFileElement = document.querySelector('#slink-img-upload');
+    const files = imageFileElement.files;
+
+    if(files.length > 0){
+        e.preventDefault();
+        const imageToSend = files[0];
+        const id = getSocialLinkIdForPhotoChange();
+        const data = new FormData;
+        data.append('id', id);
+        data.append('img', imageToSend);
+
+        fetch('/api/social_link/upload-image', {
+            method: 'POST',
+            body: data
+        })
+        .then(result => result.json())
+        .then(result => {
+            alert('სურათი წარმატებით შეინახა!');
+            closeChangeSoclinkIconModal();
+            beautifulLoader();
+            renderSocialLinks();
+        })
+        .catch(err => console.log(err))
+    }
 }
