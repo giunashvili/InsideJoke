@@ -12,6 +12,7 @@
         @include('layouts.navbar') 
         @include('layouts.modal')
         <div class="main-window">
+            <img id="back-button" class="hidden" src="{{ asset('assets/icons/back.png') }}" onclick="reRenderSocialLinks()" />
             <h1>
                 <span class="social-links-header">სოციალური ბმულები</span>
             </h1>

@@ -50,8 +50,39 @@ function renderSocialLinks(){
         
         socialLinksContainer.innerHTML = socialLinks;
 
-        
+        /*
+        * REMOVE "back button"
+        */
+       const backButton = document.querySelector('#back-button');
+       backButton.classList.add('hidden');
+//    })
 });
+}
+
+function reRenderSocialLinks(){
+            /*
+         * 1) REPLACE form with a list
+         */
+        renderSocialLinks();
+
+        /*
+         * 2) ADD "add" button
+         */
+        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
+        createSocialLinkbtn.classList.remove('hidden');
+
+        /*
+         * 3) CHANGE header
+         */
+        const header = document.getElementsByClassName('social-links-header')[0];
+        header.innerHTML = 'სოციალური ბმულები';
+
+        /*
+        * 4) REMOVE "back button"
+        */
+        const backButton = document.querySelector('#back-button');
+        backButton.classList.add('hidden');
+    
 }
 
 function newSocialLink() {
@@ -83,6 +114,11 @@ function newSocialLink() {
      const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
      createSocialLinkbtn.classList.add('hidden');
 
+     /*
+     * 4) Add "back button"
+     */
+     const backButton = document.querySelector('#back-button');
+     backButton.classList.remove('hidden');
 }
 
 function createNewSocialLink()
@@ -103,23 +139,7 @@ function createNewSocialLink()
     })
     .then(response => response.json())
     .then(data => {
-
-        /*
-         * 1) REPLACE form with a list
-         */
-        renderSocialLinks();
-
-        /*
-         * 2) ADD "add" button
-         */
-        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
-        createSocialLinkbtn.classList.remove('hidden');
-
-        /*
-         * 3) CHANGE header
-         */
-        const header = document.getElementsByClassName('social-links-header')[0];
-        header.innerHTML = 'სოციალური ბმულები';
+        reRenderSocialLinks();
     })
     .catch(err => console.log(err));
 }
@@ -138,6 +158,9 @@ function openChangeSoclinkIconModal(id){
         }    
     }
     const socialLinkName = selectedSocialLink.name;
+    const socialLinkImg = selectedSocialLink.img;
+    const defaultIconForSlinks = `<img 
+    src="/assets/icons/editPhotoBtn.svg" />`;
 
     const modal = document.getElementById('uploadModal');
     const backgroundfilter = document.getElementById('bg-filter');
@@ -151,7 +174,13 @@ function openChangeSoclinkIconModal(id){
 
     // SHOW Relevant ICON
     const socialLinkIcon = document.querySelector('.slink-icon');
-    socialLinkIcon.setAttribute('src', `${selectedSocialLink.img}`);
+    socialLinkIcon.innerHTML = defaultIconForSlinks;
+    if(socialLinkImg != null){
+        socialLinkIcon.setAttribute('src', `${selectedSocialLink.img}`);
+    }
+    else{
+        socialLinkIcon.setAttribute('src', `/assets/icons/editPhotoBtn.svg`);
+    }
 }
 
 function setSocialLinkIdForPhotoChange(id){
