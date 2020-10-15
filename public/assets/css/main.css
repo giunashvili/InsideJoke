@@ -9,6 +9,17 @@ body{
      display: none;
  }
 
+ #back-button{
+     width: calc( 25rem / 16 );
+     margin-top: calc( 40rem / 16 );
+     margin-left: calc( 45rem / 16 );
+     color: #3A7DA3;
+ }
+
+ #back-button:hover{
+     cursor: pointer;
+ }
+
 .main-window{
     width: calc( 1308rem / 16 );
     height: calc( 864rem / 16 );
