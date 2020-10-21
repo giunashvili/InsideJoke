@@ -1,0 +1,205 @@
+.pagination-space{
+    display: flex;
+    height: calc( 430rem / 16 );
+    width: calc( 900rem / 16 );
+    margin: auto;
+    margin-top: calc( 90rem / 16 );
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.member-frame{
+    margin-right: calc( 86rem / 16);
+}
+
+.member-photo-and-name{
+    width: calc( 216rem / 16);
+    height: calc( 237rem / 16);
+    background: #333333;
+    border: 1px solid #000000;
+    border-radius: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.63);
+    box-sizing: border-box;
+}
+
+.member-frame-buttons-space{
+    display: flex;
+    width: calc( 216rem / 16);
+    height: calc( 41rem / 16);
+    padding-left: calc( 15rem / 16);
+    padding-right: calc( 15rem / 16);
+    background: #333333;
+    border: 1px solid #000000;
+    border-top: none;
+    border-radius: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.63);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+.member-picture{
+    display: block;
+    height: calc( 146rem / 16 );
+    width: calc( 146rem / 16 );
+    margin: auto;
+    margin-top: calc( 28rem / 16 );
+    border-radius: 100%;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+}
+
+.member-picture-edit{
+    display: block;
+    max-width: calc( 37rem / 16 );
+    max-height: calc( 37rem / 16 );
+    margin-left: 60%;
+    margin-top: -10%;
+}
+
+.member-picture-edit:hover{
+    cursor: pointer;
+}
+
+.member-name{
+    display: block;
+    margin: auto;
+    font-size: calc( 18rem / 16 );
+    font-family: BPGNinoMtavruli;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: calc( 20rem / 16 );
+}
+
+.view{
+    width: calc( 28rem / 16 );
+    position: relative;
+}
+
+.view-outer{
+    position: absolute;
+    height: calc( 24rem / 16 );
+    width: calc( 24rem / 16 );
+    border: 1px solid #88D06F;
+    background: #000000;
+    border-radius: 100%;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+}
+
+.view-inner{
+    position: absolute;
+    height: calc( 12rem / 16 );
+    width: calc( 12rem / 16 );
+    background: #88D06F;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+}
+
+.view:hover .view-outer{
+    cursor: pointer;
+    height: calc( 25rem / 16 );
+    width: calc( 25rem / 16 );
+}
+
+.view:hover .view-inner{
+    cursor: pointer;
+    height: calc( 11rem / 16 );
+    width: calc( 11rem / 16 );
+}
+
+.edit{
+    width: calc( 28rem / 16 );
+    position: relative;
+}
+
+.edit-outer{
+    position: absolute;
+    height: calc( 24rem / 16 );
+    width: calc( 24rem / 16 );
+    border: 1px solid #F2C94C;
+    background: #000000;
+    border-radius: 100%;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+} 
+
+.edit-inner{
+    position: absolute;
+    height: calc( 12rem / 16 );
+    width: calc( 12rem / 16 );
+    background: #F2C94C;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+}
+
+.edit:hover .edit-outer{
+    cursor: pointer;
+    height: calc( 25rem / 16 );
+    width: calc( 25rem / 16 );
+}
+
+.edit:hover .edit-inner{
+    cursor: pointer;
+    height: calc( 11rem / 16 );
+    width: calc( 11rem / 16 );
+}
+
+.delete{
+    width: calc( 28rem / 16 );
+    position: relative;
+}
+
+.delete-outer{
+    position: absolute;
+    height: calc( 24rem / 16 );
+    width: calc( 24rem / 16 );
+    border: 1px solid #EB5757;
+    background: #000000;
+    border-radius: 100%;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+}
+
+.delete-inner{
+    position: absolute;
+    height: calc( 12rem / 16 );
+    width: calc( 12rem / 16 );
+    background: #EB5757;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition-duration: 0.2s;
+}
+
+.delete:hover .delete-outer{
+    cursor: pointer;
+    height: calc( 25rem / 16 );
+    width: calc( 25rem / 16 );
+}
+
+.delete:hover .delete-inner{
+    cursor: pointer;
+    height: calc( 11rem / 16 );
+    width: calc( 11rem / 16 );
+}

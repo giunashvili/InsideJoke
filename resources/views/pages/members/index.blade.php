@@ -1,34 +1,25 @@
 <html>
     <head>
-        <title>
-            Inside Joke members
-        </title>
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/members.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
     </head>
-    <body>
-        @foreach($members as $member)
-
-        <div class="member-wrapper">
-            <p>{{$member -> name}}</p>
-            <p>{{$member -> type}}</p>
-            <img src="{{$member -> img}}">
-            <p>{{$member -> description}}</p>
+    <body> 
+        @include('layouts.navbar') 
+        <div class="main-window">
+            <h1>
+                <span class="social-links-header">ჯგუფის წევრები</span>
+            </h1>
+            <div class="pagination-space">
+               <img 
+                    src="{{ asset('assets/imgs/loader.gif') }}"
+                    style="width:440px; display:block; margin:auto"
+                />
+            </div>
+            <div class="add-button" onclick="newMember()">ახალი წევრი გვყავს?</div>
         </div>
-        @endforeach
     </body>
 </html>
 
-<style>
-.member-wrapper{
-    width: 40%;
-    margin-left: 30%;
-    background-color: azure;
-    text-align: center;
-    border: 1px solid black;
-    margin-bottom: 10px;
-    background-color: lightslategrey;
-}
-
-.member-wrapper img{
-    width: 50px;
-}
-</style>
+<script src="{{ asset('assets/js/members.js') }}"></script>
