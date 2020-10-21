@@ -51,7 +51,7 @@ function renderSocialLinks(){
         socialLinksContainer.innerHTML = socialLinks;
 
         /*
-        * REMOVE "back button"
+        * HIDE "back button"
         */
        const backButton = document.querySelector('#back-button');
        backButton.classList.add('hidden');
