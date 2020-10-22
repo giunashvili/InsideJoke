@@ -1,79 +1,175 @@
 /**
- * Global state.
+ * Global state accessible to 
+ * everywhere.
  */
 const state = {
   members: [],
-  degrees: [],
-  distances: [],
-  const:{
-    incrementDegree: .1,
-    interval: 50,
-  }
-};
-
-/**
- * Start moving process when page is loaded.
- */
-const startMoving = async () => {
-  await getMembers();
-  setInitialDegrees();
-  setInitialDistances();
-  const avatars = document.querySelectorAll('.avatar');
-  setInterval(shift.bind(this, avatars), state.const.interval);
+  bandLogo: '',
+  bandInfo: '',
 }
 
 /**
- * Make planets shift in every X millisecond.
- * 
- * @param {Array<HTMLElement>} avatars
+ * Frequently used elements.
  */
-const shift = (avatars) => {
-  avatars.forEach(( avatar, index ) => {
-    const innerAvatar          = avatar.children[0];
-    const distance             = state.distances[index];
-    const degree               = calculate.degree(index);
-    const outerTransformations = calculate.outerTransformation(distance, degree);
-    const innerTransformations = calculate.innerTransformation(degree);
+const main = {
+  logo: document.querySelector('.information-panel .description .logo img'),
+  description: document.querySelector('.information-panel .description p'),
+  avatars: null,
+  rotators: null,
+  sun: null,
+};
+
+
+window.onload = async () => {
+  await getMembers();
+  await getBandInfo();
+  setUpMainElements();
+  setUpEventListeners.execute();
+
+  for(let avatar of main.avatars) {
+    avatar.addEventListener('click', selectPlanet.bind(null, avatar));
+  }
+
+  main.sun.addEventListener('click', displaySun);
+}
+
+/**
+ * Select particular planet to see his/her info.
+ */
+const selectPlanet = (selectedAvatar) => {
+  const memberId = selectedAvatar.querySelector('.member-id').value;
+
+  for(let avatar of main.avatars){
+    avatar.classList.add('pause-animation');
+  }
+  
+  for(let rotator of main.rotators){
+    rotator.classList.add('pause-animation');
+  }
+
+  displayMember(memberId);
+}
+
+/**
+ * Get members from server.
+ * 
+ * @return {void}
+ */
+const getMembers = async() => {
+  try{
+    const result = await fetch('/api/members/all', {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    const data = await result.json();
+    state.members = data;
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
+/**
+ * Get band info from server.
+ * 
+ * @return {void}
+ */
+const getBandInfo = async() => {
+  try{
+    const result = await fetch('/api/about/info', {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    const data = await result.json();
     
-    avatar.setAttribute('style', outerTransformations);
-    // innerAvatar.setAttribute('style', innerTransformations);
+    state.bandLogo = data.img;
+    state.bandInfo = data.description;
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
+/**
+ * Display member on the right panel.
+ * 
+ * @param {int} memberId
+ * @returns {void}
+ */
+const displayMember = (memberId) => {
+  const member = getMemberFromState(memberId);
+  main.logo.setAttribute('src', member.img);
+  main.description.innerHTML = member.description;
+}
+
+/**
+ * Display sun and continue moving.
+ */
+const displaySun = () => {
+  for(let avatar of main.avatars){
+    avatar.classList.remove('pause-animation');
+  }
+  
+  for(let rotator of main.rotators){
+    rotator.classList.remove('pause-animation');
+  }
+
+  main.logo.setAttribute('src', state.bandLogo);
+  main.description.innerHTML = state.bandInfo;
+}
+
+/**
+ * Get member from the global state.
+ * 
+ * @param {int} memberId
+ * @returns {object}
+ */
+const getMemberFromState = (memberId) => {
+  return state.members.find((member) => {
+    return member.id == memberId;
   });
 }
 
-const calculate = {
-  degree: (index) => {
-    const degree = (state.degrees[index] + state.const.incrementDegree) % 360;
-    return state.degrees[index] = +degree.toFixed(2);
-  },
-  outerTransformation: (distance, degree) => {
-    return `
-      transform: translate(calc((${distance}rem / 16) - 50%), -50%) rotateZ(${degree}deg);
-      transform-origin: calc(${-distance}rem / 16 + 50%);
-    `;
-  },
-  innerTransformation: (degree) => {
-    return `transform: rotateZ(${-degree}deg)`;
-  }
-};
-
-const getMembers = () => {
-  return fetch('/api/members/all')
-    .then(data => data.json())
-    .then(data => {
-      state.members = data;
-    })
-    .catch(e => console.error(e));
-}
-
-const setInitialDegrees = () => {
-  state.degrees = [...document.querySelectorAll('.initial-degree')].map(el => +el.value);
-}
-
-const setInitialDistances = () => {
-  state.distances = [...document.querySelectorAll('.planet-distance')].map(el => +el.value);
+/**
+ * Set up main elements.
+ * 
+ * @returns {void}
+ */
+const setUpMainElements = () => {
+  main.avatars = document.getElementsByClassName('avatar');
+  main.rotators = document.getElementsByClassName('rotator');
+  main.sun = document.querySelector('.sunote');
 }
 
 /**
- * Start main function when page is loaded.
+ * Set up event listeners.
+ * 
+ * @returns {void}
  */
-window.onload = startMoving.bind(this);
+const setUpEventListeners = {
+  execute: () => {
+    setUpEventListeners.listenToAvatarAnimation();
+  },
+  listenToAvatarAnimation: () => {
+    for(let avatar of main.avatars) {
+      const circleWrapper = avatar.querySelector('.animation-circles');
+
+      avatar.addEventListener('mouseover', () => {
+        circleWrapper.innerHTML = setUpEventListeners.pulseElementsSelected;
+      });
+      avatar.addEventListener('mouseleave', () => {
+        circleWrapper.innerHTML = setUpEventListeners.pulseElementsDefault;
+      });
+    }
+  },
+  pulseElementsDefault: `<span class="avatar-circle" style="animation-delay: 0s"></span>
+  <span class="avatar-circle" style="animation-delay: 0.5s"></span>
+  <span class="avatar-circle" style="animation-delay: 0.7s"></span>`,
+  
+  pulseElementsSelected: `<span class="avatar-circle selected" style="animation-delay: 0s"></span>
+  <span class="avatar-circle selected" style="animation-delay: 0.5s"></span>
+  <span class="avatar-circle selected" style="animation-delay: 0.7s"></span>`,
+
+}

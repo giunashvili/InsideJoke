@@ -137,7 +137,13 @@ main .information-panel .description p::-webkit-scrollbar-thumb:hover {
 }
 
 main .solar-system .sunote {
-  width: calc(857rem / 16);
+  width: calc(130rem / 16);
+  cursor: pointer;
+  z-index: 1;
+  animation-name: sun-shining;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 main .solar-system .circle {
@@ -146,8 +152,8 @@ main .solar-system .circle {
 }
 
 main .solar-system .avatar .bg {
-  width: calc(60rem / 16);
-  height: calc(60rem / 16);
+  width: calc(60em / 16);
+  height: calc(60em / 16);
   border-radius: 50%;
   border-width: 2px;
   border-color: #F2C94C;
@@ -156,18 +162,50 @@ main .solar-system .avatar .bg {
 
 main .solar-system .avatar {
   position: absolute;
+  cursor: pointer;
+}
+
+main .solar-system .avatar .inner-avatar .avatar-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 50%;
+  width: calc(60em / 16);
+  height: calc(60em / 16);
+  border-color: #F2C94C;
+  border-width: 1px;
+  border-style: solid;
+  animation-name: avatar-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+main .solar-system .avatar .inner-avatar .avatar-circle.selected {
+  border-color: crimson;
+  border-width: 2px;
+}
+
+main .solar-system .avatar:hover,
+main .solar-system .avatar:hover .rotator {
+  animation-play-state: paused;
+}
+
+main .solar-system .avatar:hover .avatar-circle {
+  animation-play-state: running;
 }
 
 main .solar-system .avatar .title {
-  width: calc(77rem / 16);
-  height: calc(24rem / 16);
+  width: calc(77em / 16);
+  height: calc(24em / 16);
   background-color: #F2C94C;
   border-radius: 25px;
   border-width: 2px;
   border-style: solid;
   position: absolute;
   left: 50%;
-  bottom: calc(-10rem / 16);
+  bottom: calc(-10em / 16);
   transform: translateX(-50%);
   font-family: BPGNinoMtavruli;
   text-align: center;
@@ -195,6 +233,10 @@ main .solar-system .avatar .bg img {
   transform: translate(-50%,-50%);
 }
 
+.pause-animation {
+  animation-play-state: paused;
+}
+
 @media(max-width: 1366px) {
   html {
     font-size: 12px;
@@ -204,5 +246,25 @@ main .solar-system .avatar .bg img {
 @media(max-width: 1280px) {
   html {
     font-size: 11px;
+  }
+}
+
+@keyframes sun-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes avatar-pulse {
+  from {
+    padding: 0px;
+    opacity: 1;
+  }
+  to {
+    padding: 40px;
+    opacity: 0;
   }
 }
