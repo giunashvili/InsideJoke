@@ -257,6 +257,7 @@ function renderEditSocialLink(id){
     <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}">
     <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}">
     <input type="button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
+    <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
     </form> 
     `;
 
