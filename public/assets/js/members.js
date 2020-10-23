@@ -17,7 +17,7 @@ function renderMembers(){
             for(i=0; i<data.length; i++)
             {
 
-            let img = '/assets/imgs/sample.png';
+            let img = '/assets/icons/EditPhotoBtn.svg';
 
             if(data[i].img != null)
             {
@@ -27,8 +27,12 @@ function renderMembers(){
             members +=  `
             <div class="member-frame">
                     <div class="member-photo-and-name">
-                        <img class="member-picture" src="${img}" />
-                        <img class="member-picture-edit" src="/assets/icons/EditPhotoBtn.svg" />
+                        <div class="member-picture">
+                            <div class="member-picture-inner" >
+                                <img src="${img}" />
+                            </div>
+                            <img class="member-picture-edit" src="/assets/icons/EditPhotoBtn.svg" />
+                        </div>
                         <div class="member-name"> ${data[i].name} </div>
                     </div>
                     <div class="member-frame-buttons-space">

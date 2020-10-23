@@ -48,17 +48,28 @@
     width: calc( 146rem / 16 );
     margin: auto;
     margin-top: calc( 28rem / 16 );
-    border-radius: 100%;
-    border: 1px solid #FFFFFF;
+    background-color: #143B52;
     box-sizing: border-box;
+    position: relative;
+    border-radius: 100%;
+}
+
+.member-picture-inner{
+    border: 1px solid #FFFFFF;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.member-picture img{
+    width: 100%;
 }
 
 .member-picture-edit{
-    display: block;
+    position: absolute;
     max-width: calc( 37rem / 16 );
     max-height: calc( 37rem / 16 );
-    margin-left: 60%;
-    margin-top: -10%;
+    left: 70%;
+    bottom: 0;
 }
 
 .member-picture-edit:hover{

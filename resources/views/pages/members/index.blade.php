@@ -9,7 +9,7 @@
         @include('layouts.navbar') 
         <div class="main-window">
             <h1>
-                <span class="social-links-header">ჯგუფის წევრები</span>
+                <span class="page-header">ჯგუფის წევრები</span>
             </h1>
             <div class="pagination-space">
                <img 
