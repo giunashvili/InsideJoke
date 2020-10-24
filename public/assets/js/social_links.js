@@ -49,40 +49,29 @@ function renderSocialLinks(){
         }
         
         socialLinksContainer.innerHTML = socialLinks;
-
-        /*
-        * REMOVE "back button"
-        */
-       const backButton = document.querySelector('#back-button');
-       backButton.classList.add('hidden');
-//    })
 });
 }
 
 function reRenderSocialLinks(){
-            /*
+    
+        beautifulLoader();
+
+        /*
          * 1) REPLACE form with a list
          */
         renderSocialLinks();
 
         /*
-         * 2) ADD "add" button
-         */
-        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
-        createSocialLinkbtn.classList.remove('hidden');
-
-        /*
-         * 3) CHANGE header
+         * 2) CHANGE header
          */
         const header = document.getElementsByClassName('social-links-header')[0];
         header.innerHTML = 'სოციალური ბმულები';
 
         /*
-        * 4) REMOVE "back button"
-        */
-        const backButton = document.querySelector('#back-button');
-        backButton.classList.add('hidden');
-    
+         * 3) ADD "add" button
+         */
+        const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
+        createSocialLinkbtn.classList.remove('hidden');
 }
 
 function newSocialLink() {
@@ -96,6 +85,8 @@ function newSocialLink() {
     <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური">
     <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული">
     <input type="button" onclick="createNewSocialLink()" value="დაამატე სოციალური ბმული">
+    <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
+
     </form> 
     `;
     
@@ -113,12 +104,6 @@ function newSocialLink() {
       */
      const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
      createSocialLinkbtn.classList.add('hidden');
-
-     /*
-     * 4) Add "back button"
-     */
-     const backButton = document.querySelector('#back-button');
-     backButton.classList.remove('hidden');
 }
 
 function createNewSocialLink()
@@ -272,6 +257,7 @@ function renderEditSocialLink(id){
     <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}">
     <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}">
     <input type="button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
+    <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
     </form> 
     `;
 
