@@ -4,13 +4,7 @@
 const state = {
   members: [],
   degrees: [],
-  distances: [ 
-    230 / 2,
-    400 / 2,
-    570 / 2,
-    740 / 2,
-    910 / 2,
-  ],
+  distances: [],
   const:{
     incrementDegree: .1,
     interval: 40,
@@ -23,6 +17,7 @@ const state = {
 const startMoving = async () => {
   await getMembers();
   setInitialDegrees();
+  setInitialDistances();
   const avatars = document.querySelectorAll('.avatar');
   setInterval(shift.bind(this, avatars), state.const.interval);
 }
@@ -72,6 +67,10 @@ const getMembers = () => {
 
 const setInitialDegrees = () => {
   state.degrees = [...document.querySelectorAll('.initial-degree')].map(el => +el.value);
+}
+
+const setInitialDistances = () => {
+  state.distances = [...document.querySelectorAll('.planet-distance')].map(el => +el.value);
 }
 
 /**

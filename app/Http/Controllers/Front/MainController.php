@@ -34,8 +34,8 @@ class MainController extends Controller
         230,
         400,
         570,
-        740,
-        910,
+        710,
+        850,
       ];
 
       return view('pages.landing')
