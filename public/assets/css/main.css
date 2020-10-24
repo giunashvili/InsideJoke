@@ -9,6 +9,22 @@ body{
      display: none;
  }
 
+ .back-button{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc( 225rem / 16 );
+    font-family: BPGNinoMtavruliBold;
+    font-size: calc( 18rem / 16 );
+    letter-spacing: 1px;
+    text-decoration-line: underline;
+    color: #3A7DA3;
+ }
+
+ .back-button:hover{
+    cursor: pointer;
+ }
+
 .main-window{
     width: calc( 1308rem / 16 );
     height: calc( 864rem / 16 );
@@ -19,6 +35,29 @@ body{
     margin-right: auto;
     margin-left: 25%;
     position: relative;
+}
+
+.main-window h1{
+    width: calc( 970rem / 16 );
+    height: calc( 50rem / 16 );
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: calc( 73rem / 16 );
+    margin-top: calc( 65rem / 16 );
+    border: 1px solid #000000;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+}
+
+.main-window h1 span{
+    display: block;
+    margin-top: calc( 86rem / 16 );
+    text-align: center;
+    font-family: BPGNinoMtavruli;
+    font-size: calc( 18rem / 16 );
+    letter-spacing: 1px;
 }
 
 nav{
@@ -73,6 +112,40 @@ nav a:last-of-type .nav-item{
     font-size: calc( 18rem / 16 );
     letter-spacing: 1px;
 }
+
+.add-button{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc( 88rem / 16 );
+    font-family: BPGNinoMtavruliBold;
+    font-size: calc( 18rem / 16 );
+    letter-spacing: 1px;
+    text-decoration-line: underline;
+    color: #3A7DA3;
+}
+
+.add-button:hover{
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: calc( 8rem / 16 );
+    height: calc( 12rem / 16 );
+    background: #143B52; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #87AEC5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border: calc( 8rem / 16 ) solid #90AEC9;
+    background: #87AEC5;
+}
+
 
 @media(max-width: 1600px){
     html{
