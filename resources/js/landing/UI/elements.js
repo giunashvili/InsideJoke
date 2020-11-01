@@ -1,0 +1,5 @@
+export const logo         = () => document.querySelector('.information-panel .description .logo img')
+export const description  = () => document.querySelector('.information-panel .description p')
+export const avatars      = () => Array.from(document.getElementsByClassName('avatar'))
+export const rotators     = () => Array.from(document.getElementsByClassName('rotator'))
+export const sun          = () => document.querySelector('.sunote')
