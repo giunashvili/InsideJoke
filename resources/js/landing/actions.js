@@ -1,9 +1,15 @@
-import state from './state'
-import { 
+import state, { 
+  updateSelectedMember, 
+  isMemberSelected, 
+  unselectMember, 
+} from './state'
+import {
+  animatedCircleWrappers, 
   description,
   rotators, 
   avatars, 
-  logo, 
+  logo,
+  sun,
 } from './UI/elements'
 import { displayMember } from './utils/helpers'
 import defaultPulseAnimationUI from './UI/pulse-animations/default-pulse-animation'
@@ -15,10 +21,21 @@ import selectedPulseAnimationUI from './UI/pulse-animations/selected-pulse-anima
  * @returns {void}
  */
 export const displaySun = () => {
-  avatars().forEach(e => e.classList.remove('pause-animation'))
+  if(! isMemberSelected()) {
+    return;
+  }
+  avatars().forEach(e => {
+    e.classList.remove('pause-animation');
+    e.classList.remove('blur');
+    e.classList.remove('big-font');
+  })
   rotators().forEach(e => e.classList.remove('pause-animation'))
   logo().setAttribute('src', state.bandLogo);
   description().innerHTML = state.bandInfo;
+  animatedCircleWrappers().forEach(el => el.innerHTML = defaultPulseAnimationUI);
+  unselectMember();
+  sun().style.animationName = 'sun-shining';
+  sun().style.animationDuration = '1s';
 }
 
 /**
@@ -27,11 +44,27 @@ export const displaySun = () => {
  * @returns {void}
  */
 export const selectPlanet = function() {
-  const memberId = this.querySelector('.member-id').value;
-
-  avatars().forEach(el => el.classList.add('pause-animation'));
+  this.classList.remove('blur');
+  this.classList.remove('big-font');
+  const memberId = +this.querySelector('.member-id').value;
+  
+  avatars().forEach(el => {
+    el.classList.add('pause-animation');
+    if(+el.dataset.id !== memberId) {
+      el.classList.add('blur');
+      el.classList.remove('big-font');
+    }
+    else {
+      el.classList.add('big-font');
+    }
+  });
   rotators().forEach(el => el.classList.add('pause-animation'));
+  animatedCircleWrappers().forEach(el => el.innerHTML = '');
+  sun().style.animationName = 'sun-extra-shining';
+  sun().style.animationDuration = '.3s';
+
   displayMember(memberId);
+  updateSelectedMember(memberId);
 }
 
 /**
@@ -41,7 +74,7 @@ export const selectPlanet = function() {
  * @returns {void}
  */
 export const setDefaultAnimationUI = (circleWrapper) => {
-  circleWrapper.innerHTML = defaultPulseAnimationUI;
+  ! isMemberSelected() && (circleWrapper.innerHTML = defaultPulseAnimationUI);
 }
 
 /**
@@ -51,5 +84,5 @@ export const setDefaultAnimationUI = (circleWrapper) => {
  * @returns {void}
  */
 export const setSelectedAnimationUI = (circleWrapper ) => {
-  circleWrapper.innerHTML = selectedPulseAnimationUI;
+  ! isMemberSelected() && (circleWrapper.innerHTML = selectedPulseAnimationUI);
 }

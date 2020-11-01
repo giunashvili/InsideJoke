@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+.hide {
+  display: none !important;
+}
+
+.blur {
+  filter: blur(1px);
+}
+
+.big-font {
+  font-size: 1.5em;
+}
+
 html, body {
   height: 100%;
   overflow-y: hidden;
@@ -163,6 +175,7 @@ main .solar-system .avatar .bg {
 main .solar-system .avatar {
   position: absolute;
   cursor: pointer;
+  transition: .8s;
 }
 
 main .solar-system .avatar .inner-avatar .avatar-circle {
@@ -211,6 +224,10 @@ main .solar-system .avatar .title {
   text-align: center;
 }
 
+main .solar-system .avatar.big-font .title {
+ padding-top: 4%;
+}
+
 main .solar-system .avatar .bg img {
   width: 100%;
 }
@@ -255,6 +272,15 @@ main .solar-system .avatar .bg img {
   }
   to {
     transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes sun-extra-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.1);
   }
 }
 
