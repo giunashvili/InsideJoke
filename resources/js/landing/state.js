@@ -96,3 +96,12 @@ export const unselectMember = () => {
 export const isMemberSelected = () => {
   return state.selectedMember !== null;
 }
+
+/**
+ * Get selected member id.
+ * 
+ * @returns {int|null}
+ */
+export const getSelectedMemberId = () => {
+  return state.selectedMember;
+}

@@ -1,5 +1,6 @@
 import state, { 
-  updateSelectedMember, 
+  updateSelectedMember,
+  getSelectedMemberId,
   isMemberSelected, 
   unselectMember, 
 } from './state'
@@ -28,7 +29,7 @@ export const displaySun = () => {
     e.classList.remove('pause-animation');
     e.classList.remove('blur');
     e.classList.remove('big-font');
-  })
+  });
   rotators().forEach(e => e.classList.remove('pause-animation'))
   logo().setAttribute('src', state.bandLogo);
   description().innerHTML = state.bandInfo;
@@ -44,10 +45,16 @@ export const displaySun = () => {
  * @returns {void}
  */
 export const selectPlanet = function() {
+  const memberId = +this.dataset.id;
+
+  if(getSelectedMemberId() === memberId) {
+    displaySun();
+    return;
+  }
+
   this.classList.remove('blur');
   this.classList.remove('big-font');
-  const memberId = +this.querySelector('.member-id').value;
-  
+
   avatars().forEach(el => {
     el.classList.add('pause-animation');
     if(+el.dataset.id !== memberId) {
