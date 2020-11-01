@@ -22,27 +22,9 @@ class MainController extends Controller
       Member::formatWithImage($members);
       Member::assignRandomDegrees($members);
 
-      $colors = [
-        '#EB5757',
-        '#9B51E0',
-        '#2D9CDB',
-        '#828282',
-        '#333333',
-      ];
-
-      $circleSizes = [
-        230,
-        400,
-        570,
-        710,
-        850,
-      ];
-
       return view('pages.landing')
         ->with('about',$about)
         ->with('social_links', $socialLinks)
-        ->with('members', $members)
-        ->with('circleSizes', $circleSizes)
-        ->with('colors', $colors);
+        ->with('members', $members);
     }
 }
