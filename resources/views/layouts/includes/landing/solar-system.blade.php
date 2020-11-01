@@ -1,11 +1,11 @@
 <section class="relative solar-system">
   <div class="absolutely-center-in-relative">
     <div class="relative">
-      <img 
-        src="{{ asset('assets/imgs/solar-system/sunote.svg') }}" 
-        class="absolutely-center-in-relative sunote" 
-      />
-      
+        <img 
+          src="{{ asset('assets/imgs/solar-system/sunote.svg') }}" 
+          class="absolutely-center-in-relative sunote" 
+        />
+
       @foreach($members as $member)
         <div 
           class="absolutely-center-in-relative circle" 
@@ -15,7 +15,7 @@
 
       @foreach($members as $key => $member)
 
-        <div class="avatar avatar-{{ $key }}-animate" >
+        <div class="avatar avatar-{{ $key }}-animate" data-id="{{ $member -> id }}">
           <div class="inner-avatar">
             <div class="animation-circles">
               <span class="avatar-circle" style="animation-delay: 0s"></span>

@@ -8,6 +8,7 @@ const state = {
   members: [],
   bandLogo: '',
   bandInfo: '',
+  selectedMember: null,
 };
 export default state;
 
@@ -64,6 +65,34 @@ const getBandInfo = async() => {
  */
 export const getMemberFromState = (memberId) => {
   return state.members.find((member) => {
-    return member.id == memberId;
+    return member.id === memberId;
   });
+}
+
+/**
+ * Update selected member state.
+ * 
+ * @param {int} selectedMemberId
+ * @returns {void}
+ */
+export const updateSelectedMember = (selectedMemberId) => {
+  state.selectedMember = selectedMemberId;
+}
+
+/**
+ * Unselect member.
+ * 
+ * @returns {void}
+ */
+export const unselectMember = () => {
+  state.selectedMember = null;
+}
+
+/**
+ * Determine if member is selected.
+ * 
+ * @returns {boolean}
+ */
+export const isMemberSelected = () => {
+  return state.selectedMember !== null;
 }

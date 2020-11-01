@@ -1,4 +1,4 @@
-<ul class="navigation">
+<ul class="navigation hide">
   <li>
     <a href="{{ route('register') }}">
       რეგისტრაცია
