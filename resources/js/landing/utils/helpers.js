@@ -1,5 +1,7 @@
 import { logo, description } from '../UI/elements'
 import { getMemberFromState } from '../state'
+import { getCSRF } from './meta'
+
 /**
  * Fetch api wrapper with configured options.
  * 
@@ -18,8 +20,14 @@ export const curl = (api, config = {}) => {
     }
   };
 
-  if( mergedConfig.method == 'POST' ) {
-    
+  if( mergedConfig.method === 'POST' ) {
+    if(mergedConfig.body === undefined) {
+      mergedConfig.body = {
+        _token: getCSRF(),
+      };
+    } else {
+      mergedConfig.body._token = getCSRF();
+    }
   }
 
   return fetch(api, mergedConfig);
