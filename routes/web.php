@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Utils\Helper;
+
 /* -------------------------- Web Routes ---------------------------------- */
+
+if(! Helper :: isDev())
+{
+    echo 'გადი გარეთ!';
+    exit();
+}
 
 Route::group(['namespace' => 'Front'], function() {
     Route::get('/', 'MainController')->name('landing');

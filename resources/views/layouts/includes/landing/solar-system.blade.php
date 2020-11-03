@@ -22,7 +22,6 @@
               <span class="avatar-circle" style="animation-delay: 0.5s"></span>
               <span class="avatar-circle" style="animation-delay: 0.7s"></span>
             </div>
-            <input type="hidden" name="id" value="{{ $member->id }}" class="member-id" />
             <div class="rotator inner-avatar-animate-{{ $key }}">
               <div class="bg" style="background-color: {{ $member->color }}">
                   <img src="{{ $member->img }}" />
