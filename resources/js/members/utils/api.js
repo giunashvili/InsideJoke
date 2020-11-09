@@ -1,0 +1,1 @@
+export const allMembersAPI = '/api/members/all';

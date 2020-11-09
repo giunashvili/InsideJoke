@@ -1,0 +1,1 @@
+export const editPhotoBtn = '/assets/icons/EditPhotoBtn.svg';
