@@ -1,0 +1,1 @@
+export const memberFrame = () => document.querySelector('.pagination-space');
