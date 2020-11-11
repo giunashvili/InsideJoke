@@ -5,11 +5,6 @@ import { editPhotoBtn } from '../utils/imgs';
 import { memberFrame } from '../UI/elements';
 
 export function renderMembers(){
-
-    /**
-     * არაფერი არ კონსოლლოგდება და რისი ბრალია?
-     */
-    console.log('ვაი?');
     
     fetch(allMembersAPI)
         .then( result => result.json() )
