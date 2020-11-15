@@ -1,0 +1,28 @@
+@keyframes sun-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes sun-extra-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes avatar-pulse {
+  from {
+    padding: 0px;
+    opacity: 1;
+  }
+  to {
+    padding: 40px;
+    opacity: 0;
+  }
+}
