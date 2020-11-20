@@ -4,11 +4,47 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+.hide {
+  display: none !important;
 }
 
-body{
+.blur {
+  filter: blur(1px);
+}
+
+.big-font {
+  font-size: 1.5em;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolutely-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.absolutely-center-in-relative {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pause-animation {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+body {
   background: radial-gradient(50% 50% at 50% 50%, #534571 0%, #342C46 100%);
   padding-top: calc(24rem / 16);
   padding-left: calc(81rem / 16);
@@ -24,7 +60,6 @@ header {
 
 header div.logo {
   width: calc(167rem / 16);
-
 }
 
 header div.logo img {
@@ -41,7 +76,7 @@ header ul.navigation li {
   margin-left: calc(40rem / 16 );
 }
 
-header ul.navigation li a{
+header ul.navigation li a {
   color: white;
   font-family: BPGNinoMtavruli;
   letter-spacing: 1px;
@@ -52,11 +87,115 @@ header ul.navigation li a{
 main {
   display: flex;
   justify-content: space-between;
-  flex:1;
+  flex: 1;
 }
 
 main .solar-system {
   flex: 1;
+}
+
+main .solar-system .sunote {
+  width: calc(130rem / 16);
+  cursor: pointer;
+  z-index: 1;
+  -webkit-animation-name: sun-shining;
+          animation-name: sun-shining;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+main .solar-system .circle {
+  border: 1px dashed #F2C94C;
+  border-radius: 50%;
+}
+
+main .solar-system .avatar {
+  position: absolute;
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+main .solar-system .avatar:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+main .solar-system .avatar:hover .avatar-circle {
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+
+main .solar-system .avatar:hover .rotator {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+main .solar-system .avatar.big-font .title {
+  padding-top: 4%;
+}
+
+main .solar-system .avatar .title {
+  width: calc(77em / 16);
+  height: calc(24em / 16);
+  background-color: #F2C94C;
+  border-radius: 25px;
+  border-width: 2px;
+  border-style: solid;
+  position: absolute;
+  left: 50%;
+  bottom: calc(-10em / 16);
+  transform: translateX(-50%);
+  font-family: BPGNinoMtavruli;
+  text-align: center;
+  padding-top: 0.17em;
+}
+
+main .solar-system .avatar .bg {
+  width: calc(60em / 16);
+  height: calc(60em / 16);
+  border-radius: 50%;
+  border-width: 2px;
+  border-color: #F2C94C;
+  border-style: solid;
+}
+
+main .solar-system .avatar .bg img {
+  width: 100%;
+}
+
+main .solar-system .avatar .inner-avatar .avatar-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 50%;
+  width: calc(60em / 16);
+  height: calc(60em / 16);
+  border-color: #F2C94C;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-animation-name: avatar-pulse;
+          animation-name: avatar-pulse;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+main .solar-system .avatar .inner-avatar.selected {
+  border-color: crimson;
+  border-width: 2px;
+}
+
+@media (max-width: 980px) {
+  main .solar-system {
+    display: none;
+  }
 }
 
 main .information-panel {
@@ -66,12 +205,25 @@ main .information-panel {
   align-items: center;
 }
 
+@media (max-width: 980px) {
+  main .information-panel {
+    justify-content: center;
+  }
+}
+
 main .information-panel .description {
   width: calc(682rem / 16);
   height: calc(616rem / 16);
   background-color: #FBD560;
   border-radius: 20px;
   position: relative;
+}
+
+@media (max-width: 980px) {
+  main .information-panel .description {
+    width: 90%;
+    height: 80%;
+  }
 }
 
 main .information-panel .description .logo {
@@ -104,17 +256,28 @@ main .information-panel .description p {
   text-align: justify;
   overflow-y: auto;
   color: #333333;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 980px) {
+  main .information-panel .description p {
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.7px;
+  }
 }
 
 main .information-panel .description .social-links {
   position: absolute;
   bottom: calc(-56rem / 16);
-  left:50%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
-main .information-panel .description .social-links img{
+main .information-panel .description .social-links img {
   height: calc(35rem / 16);
   margin-right: calc(23rem / 16);
   margin-left: calc(23rem / 16);
@@ -122,7 +285,7 @@ main .information-panel .description .social-links img{
 
 main .information-panel .description p::-webkit-scrollbar {
   width: calc( 8rem / 16 );
-  background: #143B52; 
+  background: #143B52;
   border-radius: 20000px;
 }
 
@@ -135,73 +298,115 @@ main .information-panel .description p::-webkit-scrollbar-thumb:hover {
   border: calc( 8rem / 16 ) solid white;
 }
 
-main .solar-system .sunote {
-  width: calc(857rem / 16);
+@-webkit-keyframes sun-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
 }
 
-main .solar-system .circle {
-  border: 1px dashed #F2C94C;
-  border-radius: 50%;
+@keyframes sun-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
 }
 
-main .solar-system .avatar .bg {
-  width: calc(60rem / 16);
-  height: calc(60rem / 16);
-  border-radius: 50%;
-  border-width: 2px;
-  border-color: #F2C94C;
-  border-style: solid;
+@-webkit-keyframes sun-extra-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
-main .solar-system .avatar {
-  position: absolute;
+@keyframes sun-extra-shining {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
-main .solar-system .avatar .title {
-  width: calc(77rem / 16);
-  height: calc(24rem / 16);
-  background-color: #F2C94C;
-  border-radius: 25px;
-  border-width: 2px;
-  border-style: solid;
-  position: absolute;
-  left: 50%;
-  bottom: calc(-10rem / 16);
-  transform: translateX(-50%);
-  font-family: BPGNinoMtavruli;
-  text-align: center;
+@-webkit-keyframes avatar-pulse {
+  from {
+    padding: 0px;
+    opacity: 1;
+  }
+
+  to {
+    padding: 40px;
+    opacity: 0;
+  }
 }
 
-main .solar-system .avatar .bg img {
-  width: 100%;
+@keyframes avatar-pulse {
+  from {
+    padding: 0px;
+    opacity: 1;
+  }
+
+  to {
+    padding: 40px;
+    opacity: 0;
+  }
 }
 
-.relative {
-  position: relative;
+@media (max-width: 1711px) {
+  html {
+    font-size: 15px;
+  }
 }
 
-.absolutely-center
-{
-  position: absolute;
-  top: 0;
-  left: 0;
+@media (max-width: 1605px) {
+  html {
+    font-size: 14px;
+  }
 }
 
-.absolutely-center-in-relative {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+@media (max-width: 1518px) {
+  html {
+    font-size: 13px;
+  }
 }
 
-@media(max-width: 1366px) {
+@media (max-width: 1402px) {
   html {
     font-size: 12px;
   }
 }
 
-@media(max-width: 1280px) {
+@media (max-width: 1366px) {
+  html {
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 1280px) {
   html {
     font-size: 11px;
   }
 }
+
+@media (max-width: 1180px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 9px;
+  }
+}
+

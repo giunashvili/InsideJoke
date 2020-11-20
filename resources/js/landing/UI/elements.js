@@ -1,0 +1,6 @@
+export const animatedCircleWrappers = () => Array.from(document.getElementsByClassName('animation-circles'))
+export const description            = () => document.querySelector('.information-panel .description p')
+export const rotators               = () => Array.from(document.getElementsByClassName('rotator'))
+export const avatars                = () => Array.from(document.getElementsByClassName('avatar'))
+export const logo                   = () => document.querySelector('.information-panel .description .logo img')
+export const sun                    = () => document.querySelector('.sunote')
