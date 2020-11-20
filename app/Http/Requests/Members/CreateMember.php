@@ -27,6 +27,8 @@ class CreateMember extends FormRequest
             'name' => 'required|string',
             'type' => 'required|string',
             'description' => 'required|string',
+            'orbital_distance' => 'required|integer',
+            'color' => 'required|string',
         ];
     }
 }

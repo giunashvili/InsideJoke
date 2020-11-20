@@ -30,7 +30,16 @@ class MembersController extends Controller
      */
     public function create(CreateMember $request)
     {
-        Member::create($request->only('name','type','description'));
+        Member::create(
+            [
+                'name' => $request->get('name'),
+                'type' => $request->get('type'),
+                'description' => $request->get('description'),
+                'circle_size' => $request->get('orbital_distance'),
+                'color' => $request->get('color'),
+            ]
+        );
+
         return response() -> json(['success' => true], 200);
     }
 
@@ -44,14 +53,18 @@ class MembersController extends Controller
         $name = $request->get('name');
         $type = $request->get('type');
         $description = $request->get('description');
+        $circleSize = $request->get('orbital_distance');
+        $color = $request->get('color');
 
-        $socialLink = Member::find($request->get('id'));
+        $member = Member::find($request->get('id'));
 
-        $name && $socialLink->name = $name;
-        $type && $socialLink->type = $type;
-        $description && $socialLink->description = $description;
+        $name && $member->name = $name;
+        $type && $member->type = $type;
+        $description && $member->description = $description;
+        $circleSize && $member->circle_size = $circleSize;
+        $color && $member->color = $color;
         
-        $socialLink->save();
+        $member->save();
 
         return response()->json(['success' => true], 200);
     }
