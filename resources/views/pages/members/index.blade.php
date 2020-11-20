@@ -17,7 +17,7 @@
                     style="width:440px; display:block; margin:auto"
                 />
             </div>
-            <div class="add-button" onclick="newMember()">ახალი წევრი გვყავს?</div>
+            <div class="add-button" id="add-new-member-button">ახალი წევრი გვყავს?</div>
         </div>
     </body>
 </html>

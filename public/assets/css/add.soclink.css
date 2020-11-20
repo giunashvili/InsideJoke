@@ -30,26 +30,4 @@ input[type=url]{
     text-align: center;
     letter-spacing: 1px;
     outline: none;
-}   
-
-input[type=button]{
-    display: block;
-    width: calc( 289rem / 16 );
-    height: calc( 50rem / 16 );
-    margin: auto;
-    margin-top: calc( 84rem / 16);
-    color: #FBFBFB;
-    background: #143B52;
-    border: 1px solid #143B52;
-    border-radius: 5px;
-    text-align: center;
-    font-family: BPGNinoMtavruli;
-    font-size: calc( 14rem / 16);
-    letter-spacing: 1px;
-    outline: none;
-    padding-top: 0.7%;
-}  
-
-input[type=button]:hover{
-    cursor: pointer;
-}
+}    

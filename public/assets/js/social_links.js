@@ -84,7 +84,7 @@ function newSocialLink() {
     <form>
     <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური">
     <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული">
-    <input type="button" onclick="createNewSocialLink()" value="დაამატე სოციალური ბმული">
+    <input type="button" onclick="createNewSocialLink()" class="add-blue-button" value="დაამატე სოციალური ბმული">
     <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
 
     </form> 
