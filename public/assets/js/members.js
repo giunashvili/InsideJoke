@@ -196,15 +196,16 @@ window.onload = function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewMember", function() { return createNewMember; });
 /* harmony import */ var _utils_renderer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/renderer */ "./resources/js/members/utils/renderer.js");
+/* harmony import */ var _utils_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/api */ "./resources/js/members/utils/api.js");
+
 
 function createNewMember() {
   var name = document.getElementById("newMemberName").value;
   var type = document.getElementById("newMemberInstrument").value;
   var description = document.getElementById("memberDesc").value;
   var orbital_distance = document.getElementById("orbitWidth").value;
-  var color = document.getElementById("memberColor").value; // აქ API უნდა გავიტანო მერე api.js-ში
-
-  fetch('/api/members/create', {
+  var color = document.getElementById("memberColor").value;
+  fetch(_utils_api__WEBPACK_IMPORTED_MODULE_1__["addMemberAPI"], {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -219,8 +220,8 @@ function createNewMember() {
     })
   }).then(function (response) {
     return response.json();
-  }).then(function (data) {
-    Object(_utils_renderer__WEBPACK_IMPORTED_MODULE_0__["reRenderMembers"])();
+  }).then(function () {
+    return Object(_utils_renderer__WEBPACK_IMPORTED_MODULE_0__["reRenderMembers"])();
   })["catch"](function (err) {
     return console.log(err);
   });
@@ -232,13 +233,15 @@ function createNewMember() {
 /*!*******************************************!*\
   !*** ./resources/js/members/utils/api.js ***!
   \*******************************************/
-/*! exports provided: allMembersAPI */
+/*! exports provided: allMembersAPI, addMemberAPI */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allMembersAPI", function() { return allMembersAPI; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addMemberAPI", function() { return addMemberAPI; });
 var allMembersAPI = '/api/members/all';
+var addMemberAPI = '/api/members/create';
 
 /***/ }),
 
@@ -246,19 +249,14 @@ var allMembersAPI = '/api/members/all';
 /*!***********************************************!*\
   !*** ./resources/js/members/utils/helpers.js ***!
   \***********************************************/
-/*! exports provided: mainMembers, beautifulLoader */
+/*! exports provided: beautifulLoader */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mainMembers", function() { return mainMembers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "beautifulLoader", function() { return beautifulLoader; });
-/**
- * ამ წუთში ეს არსად მჭირდება, მაგრამ დამჭირდება და იყოს.
- */
-var mainMembers = null;
 function beautifulLoader() {
-  var mainWindow = document.querySelector('#main-window-members');
+  var mainWindow = document.querySelector('.pagination-space');
   var loader = "\n        <img \n        src=\"/assets/imgs/loader.gif\"\n        style=\"width:440px; display:block; margin:auto\"\n        />\n        ";
   mainWindow.innerHTML = loader;
 }
@@ -323,7 +321,6 @@ function renderMembers() {
 function reRenderMembers() {
   var paginationSpace = Object(_UI_elements__WEBPACK_IMPORTED_MODULE_6__["mainWindow"])();
   var backup = Object(_UI_helper_items__WEBPACK_IMPORTED_MODULE_4__["mainWindowBackup"])();
-  console.log(paginationSpace);
   paginationSpace.innerHTML = backup;
   Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_1__["beautifulLoader"])();
   renderMembers();

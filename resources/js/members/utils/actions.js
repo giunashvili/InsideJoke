@@ -1,4 +1,5 @@
 import { reRenderMembers } from '../utils/renderer';
+import { addMemberAPI } from '../utils/api';
 
 export function createNewMember()
 {
@@ -8,8 +9,7 @@ export function createNewMember()
     const orbital_distance = document.getElementById("orbitWidth").value;
     const color = document.getElementById("memberColor").value;
 
-    // აქ API უნდა გავიტანო მერე api.js-ში
-    fetch('/api/members/create', {
+    fetch(addMemberAPI, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -24,8 +24,6 @@ export function createNewMember()
         })
     })
     .then(response => response.json())
-    .then(data => {
-        reRenderMembers();
-    })
+    .then(() => reRenderMembers())
     .catch(err => console.log(err));
 }

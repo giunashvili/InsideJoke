@@ -1,18 +1,12 @@
+import { addNewMemberButton } from './UI/elements';
 import { 
-    addNewMemberButton
-    } from './UI/elements';
-import { 
+    renderNewMemberForm, 
     renderMembers, 
-    renderNewMemberForm 
-    } from './utils/renderer';
+} from './utils/renderer';
 
 window.onload = function() {
     renderMembers(); 
     addNewMemberButton().addEventListener('click', renderNewMemberForm);
 }
-
-
-
-
 
 

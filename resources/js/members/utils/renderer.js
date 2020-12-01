@@ -1,19 +1,16 @@
 import { allMembersAPI } from '../utils/api';
-import { 
-        mainMembers,
-        beautifulLoader
-        } from '../utils/helpers';
+import { beautifulLoader } from '../utils/helpers';
 import memberItem from '../UI/member-item';
 import newMemberForm from '../UI/new-member-form';
 import { mainWindowBackup } from '../UI/helper-items';
 import { editPhotoBtn } from '../utils/imgs';
 import { 
-        memberFrame, 
-        mainWindow,
-        backButton,
-        addNewMemberButton,
-        createNewMemberButton
-        } from '../UI/elements';
+    backButton,
+    mainWindow,
+    memberFrame, 
+    addNewMemberButton,
+    createNewMemberButton,
+} from '../UI/elements';
 import { createNewMember } from '../utils/actions';
 
 export function renderMembers(){
@@ -36,7 +33,6 @@ export function reRenderMembers(){
 
     const paginationSpace = mainWindow();
     const backup = mainWindowBackup();
-    console.log(paginationSpace);
     paginationSpace.innerHTML = backup;
 
     beautifulLoader();
