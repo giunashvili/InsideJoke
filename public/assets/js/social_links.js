@@ -84,7 +84,7 @@ function newSocialLink() {
     <form>
     <input type="text" id="addNewSoclinkName" name="addNewSoclinkName" placeholder="ბმულის სათაური">
     <input type="url" id="addNewSoclinkURL" name="addNewSoclinkURL" placeholder="ბმული">
-    <input type="button" onclick="createNewSocialLink()" class="add-blue-button" value="დაამატე სოციალური ბმული">
+    <input type="button" onclick="createNewSocialLink()" class="blue-add-button" value="დაამატე სოციალური ბმული">
     <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
 
     </form> 
@@ -256,7 +256,7 @@ function renderEditSocialLink(id){
     <form>
     <input type="text" id="editSoclinkName" name="editSoclinkName" placeholder="ბმულის სათაური" value="${socialLinkName}">
     <input type="url" id="editSoclinkURL" name="editSoclinkURL" placeholder="ბმული" value="${socialLinkURL}">
-    <input type="button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
+    <input type="button" class="blue-add-button" id="saveBlueButton" value="შენახვა" onclick="editSocialLink(${id})">
     <div class="back-button" onclick="reRenderSocialLinks()">გადი უკან</div>
     </form> 
     `;

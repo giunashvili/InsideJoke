@@ -1,9 +1,20 @@
 import { allMembersAPI } from '../utils/api';
-import { mainMembers } from '../utils/helpers'; /*** ახლა არსად ვიყენებ, მაგრამ იყოს ჯერ ***/
+import { 
+        mainMembers,
+        beautifulLoader
+        } from '../utils/helpers';
 import memberItem from '../UI/member-item';
-import newMemberForm from '../UI/new-member-form.js'
+import newMemberForm from '../UI/new-member-form';
+import { mainWindowBackup } from '../UI/helper-items';
 import { editPhotoBtn } from '../utils/imgs';
-import { memberFrame } from '../UI/elements';
+import { 
+        memberFrame, 
+        mainWindow,
+        backButton,
+        addNewMemberButton,
+        createNewMemberButton
+        } from '../UI/elements';
+import { createNewMember } from '../utils/actions';
 
 export function renderMembers(){
     
@@ -18,32 +29,30 @@ export function renderMembers(){
                 .join(' ');
             
             memberFrame().innerHTML = members;
-
 });
+}
+
+export function reRenderMembers(){
+
+    const paginationSpace = mainWindow();
+    const backup = mainWindowBackup();
+    console.log(paginationSpace);
+    paginationSpace.innerHTML = backup;
+
+    beautifulLoader();
+    renderMembers();
+    addNewMemberButton().addEventListener('click', renderNewMemberForm);
 }
 
 export function renderNewMemberForm(){
 
-        /*
-         * 1) Render Form Itself
-         */
-        const paginationSpace = memberFrame();
-        const form = newMemberForm();
-        
-        paginationSpace.innerHTML = form; 
+    const paginationSpace = mainWindow();
+    const form = newMemberForm();
     
-        /*
-         * 2) CHANGE page header
-         */
-    
-        //  const header = document.getElementsByClassName('social-links-header')[0];
-        //  header.innerHTML = 'დაამატე ახალი სოციალური ბმული';
-    
-         /*
-          * 3) HIDE 'დაამატე ახალი სოციალური ბმული' button
-          */
-//          const createSocialLinkbtn = document.getElementsByClassName('add-button')[0];
-//          createSocialLinkbtn.classList.add('hidden');
+    paginationSpace.innerHTML = form; 
+
+    createNewMemberButton().addEventListener('click', createNewMember);
+    backButton().addEventListener('click', reRenderMembers);
 }
 
 

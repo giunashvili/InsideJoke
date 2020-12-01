@@ -3,11 +3,12 @@
         <title>Dashboard</title>
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/members.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/add.member.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}" />
     </head>
     <body> 
         @include('layouts.navbar') 
-        <div class="main-window">
+        <div class="main-window" id="main-window-members">
             <h1>
                 <span class="page-header">ჯგუფის წევრები</span>
             </h1>

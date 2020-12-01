@@ -1,14 +1,18 @@
-import { renderMembers, renderNewMemberForm } from './utils/renderer';
-import { addNewMemberButton } from './UI/elements';
-
-console.log('აღვსრულდი');
-
+import { 
+    addNewMemberButton
+    } from './UI/elements';
+import { 
+    renderMembers, 
+    renderNewMemberForm 
+    } from './utils/renderer';
 
 window.onload = function() {
     renderMembers(); 
+    addNewMemberButton().addEventListener('click', renderNewMemberForm);
 }
 
-console.log('აღვსრულდი');
 
-// სად ჩავსვა ეს ???
-addNewMemberButton().addEventListener('click', renderNewMemberForm);  
+
+
+
+
