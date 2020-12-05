@@ -11,7 +11,10 @@ import {
     addNewMemberButton,
     createNewMemberButton,
 } from '../UI/elements';
-import { createNewMember } from '../utils/actions';
+import { 
+    createNewMember,
+    setMemberBackground, 
+} from '../utils/actions';
 
 export function renderMembers(){
     
@@ -26,6 +29,7 @@ export function renderMembers(){
                 .join(' ');
             
             memberFrame().innerHTML = members;
+            setMemberBackground();
 });
 }
 

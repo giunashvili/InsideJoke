@@ -1,10 +1,10 @@
 export default function ( img, name ) {
     return `
             <div class="member-frame">
-                    <div class="member-photo-and-name">
+                    <div class="member-photo-and-name" id="memberphotoandname">
                         <div class="member-picture">
                             <div class="member-picture-inner" >
-                                <img src="${img}" />
+                                <img class="member-picture-itself" src="${img}" />
                             </div>
                             <img class="member-picture-edit" src="/assets/icons/EditPhotoBtn.svg" />
                         </div>

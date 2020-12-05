@@ -28,6 +28,8 @@ class UpdateMember extends FormRequest
             'name' => 'string',
             'type' => 'string',
             'description' => 'string',
+            'orbital_distance' => 'integer',
+            'color' => 'string',
         ];
     }
 }

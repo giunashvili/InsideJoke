@@ -48,10 +48,14 @@
     width: calc( 146rem / 16 );
     margin: auto;
     margin-top: calc( 28rem / 16 );
-    background-color: #143B52;
+    /* background-color: #143B52; */
     box-sizing: border-box;
     position: relative;
     border-radius: 100%;
+}
+
+.background-color{
+    background-color: #FFFFFF;
 }
 
 .member-picture-inner{

@@ -1,4 +1,8 @@
 {
     "/assets/js/landing.js": "/assets/js/landing.js",
+<<<<<<< HEAD
     "/assets/js/members.js": "/assets/js/members.js"
+=======
+    "/assets/css/landing.css": "/assets/css/landing.css"
+>>>>>>> 97fd2304004e994546c24a18a7513227ca6119bb
 }

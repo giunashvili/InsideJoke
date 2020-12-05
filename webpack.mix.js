@@ -13,4 +13,8 @@ const mix = require('laravel-mix');
 
 mix 
     .js('resources/js/landing/index.js', 'public/assets/js/landing.js')
+<<<<<<< HEAD
     .js('resources/js/members/index.js', 'public/assets/js/members.js');
+=======
+    .sass('resources/sass/landing/index.scss', 'public/assets/css/landing.css');
+>>>>>>> 97fd2304004e994546c24a18a7513227ca6119bb
