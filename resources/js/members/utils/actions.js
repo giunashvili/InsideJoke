@@ -24,14 +24,6 @@ export function createNewMember()
         })
     })
     .then(response => response.json())
-    .then(() => reRenderMembers())
+    .then((result) => reRenderMembers())
     .catch(err => console.log(err));
-}
-
-export function setMemberBackground(){
-    const memberPictures = document.getElementsByClassName('member-picture');
-    const memberPicturesArrayForBackground = Array.from(memberPictures);
-    memberPicturesArrayForBackground.forEach(
-        (memberPictureForBackground) => memberPictureForBackground.style.backgroundColor = 'red'
-        );
 }

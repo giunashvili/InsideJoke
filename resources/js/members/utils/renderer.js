@@ -11,10 +11,7 @@ import {
     addNewMemberButton,
     createNewMemberButton,
 } from '../UI/elements';
-import { 
-    createNewMember,
-    setMemberBackground, 
-} from '../utils/actions';
+import { createNewMember } from '../utils/actions';
 
 export function renderMembers(){
     
@@ -24,14 +21,13 @@ export function renderMembers(){
             const members = data
                 .map((el) => {
                     el.img === null && (el.img = editPhotoBtn);
-                    return memberItem(el.img, el.name);
+                    return memberItem(el.img, el.name, el.color);
                 })
                 .join(' ');
             
             memberFrame().innerHTML = members;
-            console.log(data);
-            setMemberBackground();
-});
+        })
+        .catch(error => console.log(error));
 }
 
 export function reRenderMembers(){

@@ -1,8 +1,8 @@
-export default function ( img, name ) {
+export default function ( img, name, color ) {
     return `
             <div class="member-frame">
                     <div class="member-photo-and-name" id="memberphotoandname">
-                        <div class="member-picture">
+                        <div class="member-picture" style="background-color:${color}">
                             <div class="member-picture-inner" >
                                 <img class="member-picture-itself" src="${img}" />
                             </div>
