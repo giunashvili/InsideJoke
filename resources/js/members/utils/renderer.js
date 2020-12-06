@@ -29,6 +29,7 @@ export function renderMembers(){
                 .join(' ');
             
             memberFrame().innerHTML = members;
+            console.log(data);
             setMemberBackground();
 });
 }

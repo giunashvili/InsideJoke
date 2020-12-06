@@ -29,17 +29,9 @@ export function createNewMember()
 }
 
 export function setMemberBackground(){
-    console.log('ფერის შეცვლას ვაპირებ');
     const memberPictures = document.getElementsByClassName('member-picture');
-    console.log(memberPictures);
     const memberPicturesArrayForBackground = Array.from(memberPictures);
-    console.log(memberPicturesArrayForBackground);
-    console.log(Array.from(memberPictures));
-    memberPicturesArrayForBackground.forEach((memberPictureForBackground) => memberPictureForBackground.style.backgroundColor = 'red');
-
+    memberPicturesArrayForBackground.forEach(
+        (memberPictureForBackground) => memberPictureForBackground.style.backgroundColor = 'red'
+        );
 }
-
-
-// export function makeArrayFromMemberPictureElements(){
-//     return Array.from(memberPictures);
-// }
