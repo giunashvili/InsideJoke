@@ -31,7 +31,11 @@ Route::group(['namespace' => 'Auth'], function() {
     Route::get('logout', 'AuthController@logout')->name('logout');
 });
 
-Route::group(['prefix' => 'test'], function(){
-    Route::get('/', 'TestController')->name('test.main');
-    Route::get('/add-soc-link', 'TestController@getSocialLink')->name('test.add-soc-link');
+Route::get('test', function() {
+    return view('test');
 });
+
+// Route::group(['prefix' => 'test'], function(){
+//     Route::get('/', 'TestController')->name('test.main');
+//     Route::get('/add-soc-link', 'TestController@getSocialLink')->name('test.add-soc-link');
+// });
