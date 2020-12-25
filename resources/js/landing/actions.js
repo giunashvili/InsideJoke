@@ -60,9 +60,11 @@ export const selectPlanet = function() {
     if(+el.dataset.id !== memberId) {
       el.classList.add('blur');
       el.classList.remove('big-font');
+      el.style.zIndex = 0;
     }
     else {
       el.classList.add('big-font');
+      el.style.zIndex = 10;
     }
   });
   rotators().forEach(el => el.classList.add('pause-animation'));

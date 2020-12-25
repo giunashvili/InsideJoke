@@ -24,7 +24,8 @@
             </div>
             <div class="rotator inner-avatar-animate-{{ $key }}">
               <div class="bg" style="background-color: {{ $member->color }}">
-                  <img src="{{ $member->img }}" />
+                  @if($key === 4) <img class="x" src="{{ asset('assets/imgs/x.png') }}" /> @endif
+                  <img class="member" src="{{ $member->img }}" />
                 </div>
               <p class="title" style="border-color: {{ $member->color }}"> {{ $member->name }} </p>
             </div>
