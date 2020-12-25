@@ -115,8 +115,17 @@ main {
         border-width: 2px;
         border-color: #F2C94C;
         border-style: solid;
+        
+        img.x {
+          position: absolute;
+          width: 6rem;
+          left: 50%;
+          top: 70%;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+        }
 
-        img {
+        img.member {
           width: 100%;
         }        
       }
